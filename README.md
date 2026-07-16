@@ -6,6 +6,8 @@ A static website for previewing and copying seven Codex material themes.
 It uses plain HTML, CSS, and browser JavaScript—there is no React, database,
 login, or application server.
 
+![Codex Material Themes preview](public/readme-preview.png)
+
 ## Edit the site
 
 - `index.html`: page metadata and the HTML entry point.
