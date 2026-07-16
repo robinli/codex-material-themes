@@ -19,8 +19,8 @@ const themes = [
 }));
 
 const copy = {
-  zh: { guide: "匯入方式", themes: "7 款主題", eyebrow: "數位閱讀，向真實材質校準", title: "讓 Codex 像一張\n值得久坐的桌子。", lead: "七款介面預設，靈感來自黑板、羊皮紙、製圖桌與野外儀器。預覽效果、複製一行設定，立即套用。", choose: "選擇主題", how: "查看匯入方式", meta: ["真實預覽", "一行套用", "隨時切換"], guideTitle: "五個步驟，不必編輯設定檔。", guideLead: "在 Codex 內依此路徑操作；貼上時請保留完整設定行。", steps: ["設定", "外觀", "匯入", "貼上", "匯入主題"], path: "設定 → 外觀 → 匯入 → 貼上完整設定行 → 選擇「匯入主題」。", collection: "選一個今天的閱讀環境。", collectionLead: "切換主題以查看實際介面與色盤，再複製預設並在 Codex 匯入。", selected: "已選擇", surface: "背景", ink: "文字", accent: "強調色", fonts: "字體設定", fontHint: "從下拉選項選擇，或直接輸入其他字體名稱。", uiFont: "UI 字體", codeFont: "程式碼字體", copy: "複製主題設定", copied: "已複製設定", footer: "七種數位材質，為長時間閱讀與專注工作調校。", top: "回到頂端" },
-  en: { guide: "How to import", themes: "7 themes", eyebrow: "Digital reading, calibrated to real materials", title: "Make Codex feel like\na desk worth staying at.", lead: "Seven appearance presets inspired by chalkboards, parchment, drafting tables, and field instruments. Preview the result, copy one line, and apply it instantly.", choose: "Choose a theme", how: "See how to import", meta: ["real previews", "line to apply", "anytime switching"], guideTitle: "Five steps. No config file editing.", guideLead: "Follow this path inside Codex. When copying a theme, paste the complete line.", steps: ["Settings", "Appearance", "Import", "Paste", "Import theme"], path: "Settings → Appearance → Import → paste the full line → select “Import theme”.", collection: "Choose today’s reading environment.", collectionLead: "Switch themes to inspect the real interface and palette, then copy the preset and import it in Codex.", selected: "Selected", surface: "Surface", ink: "Ink", accent: "Accent", fonts: "Font settings", fontHint: "Choose from the dropdown or enter another font name.", uiFont: "UI font", codeFont: "Code font", copy: "Copy theme settings", copied: "Settings copied", footer: "Seven digital materials tuned for long reading and focused work.", top: "Back to top" },
+  zh: { guide: "匯入方式", themes: "7 款主題", eyebrow: "數位閱讀，向真實材質校準", title: "讓 Codex 像一張\n值得久坐的桌子。", lead: "七款介面預設，靈感來自黑板、羊皮紙、製圖桌與野外儀器。預覽效果、複製一行設定，立即套用。", choose: "選擇主題", how: "查看匯入方式", meta: ["真實預覽", "一行套用", "隨時切換"], guideTitle: "五個步驟，不必編輯設定檔。", guideLead: "在 Codex 內依此路徑操作；貼上時請保留完整設定行。", steps: ["設定", "外觀", "匯入", "貼上", "匯入主題"], path: "設定 → 外觀 → 匯入 → 貼上完整設定行 → 選擇「匯入主題」。", collection: "選一個今天的閱讀環境。", collectionLead: "切換主題以查看實際介面與色盤，再複製預設並在 Codex 匯入。", selected: "已選擇", surface: "背景", ink: "文字", accent: "強調色", fonts: "字體設定", fontHint: "從下拉選項選擇，或直接輸入其他字體名稱。", uiFont: "UI 字體", codeFont: "程式碼字體", showFontOptions: "顯示字體選項", copy: "複製主題設定", copied: "已複製設定", footer: "七種數位材質，為長時間閱讀與專注工作調校。", top: "回到頂端" },
+  en: { guide: "How to import", themes: "7 themes", eyebrow: "Digital reading, calibrated to real materials", title: "Make Codex feel like\na desk worth staying at.", lead: "Seven appearance presets inspired by chalkboards, parchment, drafting tables, and field instruments. Preview the result, copy one line, and apply it instantly.", choose: "Choose a theme", how: "See how to import", meta: ["real previews", "line to apply", "anytime switching"], guideTitle: "Five steps. No config file editing.", guideLead: "Follow this path inside Codex. When copying a theme, paste the complete line.", steps: ["Settings", "Appearance", "Import", "Paste", "Import theme"], path: "Settings → Appearance → Import → paste the full line → select “Import theme”.", collection: "Choose today’s reading environment.", collectionLead: "Switch themes to inspect the real interface and palette, then copy the preset and import it in Codex.", selected: "Selected", surface: "Surface", ink: "Ink", accent: "Accent", fonts: "Font settings", fontHint: "Choose from the dropdown or enter another font name.", uiFont: "UI font", codeFont: "Code font", showFontOptions: "Show font options", copy: "Copy theme settings", copied: "Settings copied", footer: "Seven digital materials tuned for long reading and focused work.", top: "Back to top" },
 };
 
 let locale = localStorage.getItem("codex-material-locale") || (navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en");
@@ -52,6 +52,39 @@ function themeValue(theme) {
   })}`;
 }
 
+function updateThemeCode() {
+  const themeCode = document.querySelector(".copy-panel code");
+  if (themeCode) themeCode.textContent = themeValue(themes[selectedId - 1]);
+}
+
+function closeFontMenus() {
+  document.querySelectorAll(".font-combobox").forEach((combobox) => {
+    combobox.querySelector(".font-menu").hidden = true;
+    combobox.querySelector(".font-toggle").setAttribute("aria-expanded", "false");
+    combobox.querySelector("input").setAttribute("aria-expanded", "false");
+  });
+}
+
+function openFontMenu(type) {
+  closeFontMenus();
+  const combobox = document.querySelector(`[data-font-combobox="${type}"]`);
+  if (!combobox) return;
+  combobox.querySelector(".font-menu").hidden = false;
+  combobox.querySelector(".font-toggle").setAttribute("aria-expanded", "true");
+  combobox.querySelector("input").setAttribute("aria-expanded", "true");
+}
+
+function setFont(type, value) {
+  selectedFonts[type] = value.trim() || fontOptions[type][0];
+  localStorage.setItem(`codex-material-${type}-font`, selectedFonts[type]);
+  const input = document.querySelector(`input[data-font="${type}"]`);
+  if (input) input.value = selectedFonts[type];
+  document.querySelectorAll(`[data-font-combobox="${type}"] [data-font-option]`).forEach((option) => {
+    option.setAttribute("aria-selected", String(option.dataset.fontOption === selectedFonts[type]));
+  });
+  updateThemeCode();
+}
+
 function render() {
   const t = copy[locale];
   const selected = themes[selectedId - 1];
@@ -60,7 +93,7 @@ function render() {
     <header class="site-header"><a class="brand" href="#top"><span class="brand-mark">C</span><span>CODEX / MATERIAL THEMES</span></a><div class="header-actions"><nav><a href="#guide">${t.guide}</a><a href="#themes">${t.themes}</a></nav><div class="language-switch"><button data-locale="zh" class="${locale === "zh" ? "active" : ""}">中文</button><span>/</span><button data-locale="en" class="${locale === "en" ? "active" : ""}">EN</button></div></div></header>
     <section class="hero" id="top"><div class="hero-copy"><p class="eyebrow"><span></span>${t.eyebrow}</p><h1>${t.title.replace("\n", "<br>")}</h1><p class="hero-lead">${t.lead}</p><div class="hero-actions"><a class="button primary" href="#themes">${t.choose} <b>→</b></a><a class="text-link" href="#guide">${t.how} →</a></div><div class="hero-meta"><div><strong>07</strong><span>${t.meta[0]}</span></div><div><strong>01</strong><span>${t.meta[1]}</span></div><div><strong>∞</strong><span>${t.meta[2]}</span></div></div></div><div class="hero-visual"><div class="material-label">01 / CHALKBOARD GREEN</div><div class="image-frame"><img src="${siteAssetBase}themes/Theme01.png" alt="Chalkboard Green preview"></div><div class="hero-swatches"><i style="background:#18382B"></i><i style="background:#E8E3D3"></i><i style="background:#D4B95E"></i></div></div></section>
     <section class="guide-section" id="guide"><div class="section-heading"><p class="section-index">01 / HOW TO APPLY</p><div><h2>${t.guideTitle}</h2><p>${t.guideLead}</p></div></div><ol class="steps">${t.steps.map((step, index) => `<li><span>0${index + 1}</span><strong>${step}</strong>${index < 4 ? "<b>→</b>" : ""}</li>`).join("")}</ol><p class="guide-note"><b>Path: </b>${t.path}<br><span>Every preset uses <code>opaqueWindows:true</code>, so interface colours stay closer to their material reference.</span></p></section>
-    <section class="themes-section" id="themes"><div class="section-heading inverse"><p class="section-index">02 / THE COLLECTION</p><div><h2>${t.collection}</h2><p>${t.collectionLead}</p></div></div><div class="theme-workbench"><div class="theme-list">${themes.map((theme) => `<div class="theme-row ${theme.id === selectedId ? "active" : ""}"><button class="theme-select" data-select="${theme.id}"><span>0${theme.id}</span><span><strong>${locale === "zh" ? theme.zh : theme.en}</strong><small>${locale === "zh" ? theme.en : theme.zh}</small></span><em><i style="background:${theme.surface}"></i><i style="background:${theme.ink}"></i><i style="background:${theme.accent}"></i></em></button><button class="quick-copy" data-copy="${theme.id}" aria-label="${t.copy}">⧉</button></div>`).join("")}</div><article class="theme-preview" style="--surface:${selected.surface};--accent:${selected.accent}"><div class="preview-topline"><span>${t.selected.toUpperCase()} / 0${selected.id}</span><span>CONTRAST ${selected.contrast}</span></div><img class="preview-image" src="${selected.image}" alt="${esc(selected.en)} preview"><div class="preview-info"><div><p class="preview-en">${locale === "zh" ? selected.en : selected.zh}</p><h3>${locale === "zh" ? selected.zh : selected.en}</h3><p>${locale === "zh" ? selected.noteZh : selected.noteEn}</p></div><div class="palette"><div><i style="background:${selected.surface}"></i><small>${t.surface}<br>${selected.surface}</small></div><div><i style="background:${selected.ink}"></i><small>${t.ink}<br>${selected.ink}</small></div><div><i style="background:${selected.accent}"></i><small>${t.accent}<br>${selected.accent}</small></div></div></div><div class="font-panel"><div class="font-heading"><strong>${t.fonts}</strong><span>${t.fontHint}</span></div><div class="font-fields"><label><span>${t.uiFont}</span><input type="text" list="ui-font-options" data-font="ui" value="${esc(selectedFonts.ui)}" autocomplete="off"></label><label><span>${t.codeFont}</span><input type="text" list="code-font-options" data-font="code" value="${esc(selectedFonts.code)}" autocomplete="off"></label></div><datalist id="ui-font-options">${fontOptions.ui.map((font) => `<option value="${esc(font)}"></option>`).join("")}</datalist><datalist id="code-font-options">${fontOptions.code.map((font) => `<option value="${esc(font)}"></option>`).join("")}</datalist></div><div class="copy-panel"><code>${esc(themeValue(selected))}</code><button class="copy-button" data-copy="${selected.id}">${t.copy}</button></div></article></div></section>
+    <section class="themes-section" id="themes"><div class="section-heading inverse"><p class="section-index">02 / THE COLLECTION</p><div><h2>${t.collection}</h2><p>${t.collectionLead}</p></div></div><div class="theme-workbench"><div class="theme-list">${themes.map((theme) => `<div class="theme-row ${theme.id === selectedId ? "active" : ""}"><button class="theme-select" data-select="${theme.id}"><span>0${theme.id}</span><span><strong>${locale === "zh" ? theme.zh : theme.en}</strong><small>${locale === "zh" ? theme.en : theme.zh}</small></span><em><i style="background:${theme.surface}"></i><i style="background:${theme.ink}"></i><i style="background:${theme.accent}"></i></em></button><button class="quick-copy" data-copy="${theme.id}" aria-label="${t.copy}">⧉</button></div>`).join("")}</div><article class="theme-preview" style="--surface:${selected.surface};--accent:${selected.accent}"><div class="preview-topline"><span>${t.selected.toUpperCase()} / 0${selected.id}</span><span>CONTRAST ${selected.contrast}</span></div><img class="preview-image" src="${selected.image}" alt="${esc(selected.en)} preview"><div class="preview-info"><div><p class="preview-en">${locale === "zh" ? selected.en : selected.zh}</p><h3>${locale === "zh" ? selected.zh : selected.en}</h3><p>${locale === "zh" ? selected.noteZh : selected.noteEn}</p></div><div class="palette"><div><i style="background:${selected.surface}"></i><small>${t.surface}<br>${selected.surface}</small></div><div><i style="background:${selected.ink}"></i><small>${t.ink}<br>${selected.ink}</small></div><div><i style="background:${selected.accent}"></i><small>${t.accent}<br>${selected.accent}</small></div></div></div><div class="font-panel"><div class="font-heading"><strong>${t.fonts}</strong><span>${t.fontHint}</span></div><div class="font-fields">${["ui", "code"].map((type) => `<div class="font-field"><span id="${type}-font-label">${type === "ui" ? t.uiFont : t.codeFont}</span><div class="font-combobox" data-font-combobox="${type}"><input type="text" data-font="${type}" value="${esc(selectedFonts[type])}" autocomplete="off" role="combobox" aria-autocomplete="none" aria-labelledby="${type}-font-label" aria-controls="${type}-font-menu" aria-expanded="false"><button type="button" class="font-toggle" data-font-toggle="${type}" aria-label="${t.showFontOptions}: ${type === "ui" ? t.uiFont : t.codeFont}" aria-controls="${type}-font-menu" aria-expanded="false"></button><div class="font-menu" id="${type}-font-menu" role="listbox" aria-labelledby="${type}-font-label" hidden>${fontOptions[type].map((font) => `<button type="button" role="option" data-font-option="${esc(font)}" data-font-type="${type}" aria-selected="${font === selectedFonts[type]}">${esc(font)}</button>`).join("")}</div></div></div>`).join("")}</div></div><div class="copy-panel"><code>${esc(themeValue(selected))}</code><button class="copy-button" data-copy="${selected.id}">${t.copy}</button></div></article></div></section>
     <footer><div><span class="brand-mark">C</span><strong>Codex Material Themes / Robin Li</strong></div><p>${t.footer}</p><a href="#top">${t.top}</a></footer>`;
 }
 
@@ -74,6 +107,19 @@ async function copyTheme(id) {
 app.addEventListener("click", (event) => {
   const button = event.target.closest("button");
   if (!button) return;
+  if (button.dataset.fontToggle) {
+    const type = button.dataset.fontToggle;
+    const shouldOpen = button.getAttribute("aria-expanded") !== "true";
+    if (shouldOpen) openFontMenu(type); else closeFontMenus();
+    return;
+  }
+  if (button.dataset.fontOption) {
+    const type = button.dataset.fontType;
+    setFont(type, button.dataset.fontOption);
+    closeFontMenus();
+    document.querySelector(`input[data-font="${type}"]`)?.focus();
+    return;
+  }
   if (button.dataset.locale) { locale = button.dataset.locale; localStorage.setItem("codex-material-locale", locale); render(); }
   if (button.dataset.select) { selectedId = Number(button.dataset.select); render(); document.querySelector(".theme-preview")?.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
   if (button.dataset.copy) copyTheme(Number(button.dataset.copy));
@@ -85,19 +131,36 @@ app.addEventListener("input", (event) => {
   const type = input.dataset.font;
   selectedFonts[type] = input.value;
   localStorage.setItem(`codex-material-${type}-font`, input.value);
-  const themeCode = document.querySelector(".copy-panel code");
-  if (themeCode) themeCode.textContent = themeValue(themes[selectedId - 1]);
+  updateThemeCode();
 });
 
 app.addEventListener("change", (event) => {
   const input = event.target.closest("input[data-font]");
   if (!input) return;
-  const type = input.dataset.font;
-  selectedFonts[type] = input.value.trim() || fontOptions[type][0];
-  input.value = selectedFonts[type];
-  localStorage.setItem(`codex-material-${type}-font`, selectedFonts[type]);
-  const themeCode = document.querySelector(".copy-panel code");
-  if (themeCode) themeCode.textContent = themeValue(themes[selectedId - 1]);
+  setFont(input.dataset.font, input.value);
+});
+
+app.addEventListener("keydown", (event) => {
+  const input = event.target.closest("input[data-font]");
+  if (input && event.key === "ArrowDown" && event.altKey) {
+    event.preventDefault();
+    openFontMenu(input.dataset.font);
+  }
+  if (event.key === "Escape" && event.target.closest(".font-combobox")) {
+    closeFontMenus();
+  }
+});
+
+app.addEventListener("focusout", (event) => {
+  const combobox = event.target.closest(".font-combobox");
+  if (!combobox) return;
+  setTimeout(() => {
+    if (!combobox.contains(document.activeElement)) closeFontMenus();
+  });
+});
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".font-combobox")) closeFontMenus();
 });
 
 render();
