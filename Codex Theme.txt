@@ -66,6 +66,18 @@ codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#C989A5","contrast":67,
 codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#E6A84F","contrast":78,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#F1DFC1","opaqueWindows":true,"semanticColors":{"diffAdded":"#A6C77B","diffRemoved":"#E08A72","skill":"#C7A5D9"},"surface":"#17140F"},"variant":"dark"}
 ```
 
+## 11. 清水模工作室
+
+```text
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#60402F","contrast":70,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#292D2E","opaqueWindows":true,"semanticColors":{"diffAdded":"#2E5039","diffRemoved":"#75312F","skill":"#4E3D63"},"surface":"#B9BAB6"},"variant":"dark"}
+```
+
+## 12. 靛藍工裝
+
+```text
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#AF9362","contrast":72,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#DDE1DE","opaqueWindows":true,"semanticColors":{"diffAdded":"#86A98B","diffRemoved":"#D18478","skill":"#A696BB"},"surface":"#1D2933"},"variant":"dark"}
+```
+
 [1]: https://developers.openai.com/codex/reference/settings "
   Settings | ChatGPT Learn
 "

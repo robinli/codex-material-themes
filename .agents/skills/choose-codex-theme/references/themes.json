@@ -143,6 +143,32 @@
       "accent": "#E6A84F",
       "contrast": 78,
       "semanticColors": { "diffAdded": "#A6C77B", "diffRemoved": "#E08A72", "skill": "#C7A5D9" }
+    },
+    {
+      "id": 11,
+      "slug": "concrete-studio",
+      "name": { "en": "Concrete Studio", "zh": "清水模工作室" },
+      "description": { "en": "Balanced concrete grey with dark graphite and a practical rust-brown accent.", "zh": "均衡的清水模灰搭配深石墨與實用的鐵鏽棕重點色。" },
+      "tags": ["light", "neutral", "professional", "structured", "low-glare"],
+      "preview": "../assets/Theme11.png",
+      "surface": "#B9BAB6",
+      "ink": "#292D2E",
+      "accent": "#60402F",
+      "contrast": 70,
+      "semanticColors": { "diffAdded": "#2E5039", "diffRemoved": "#75312F", "skill": "#4E3D63" }
+    },
+    {
+      "id": 12,
+      "slug": "indigo-workwear",
+      "name": { "en": "Indigo Workwear", "zh": "靛藍工裝" },
+      "description": { "en": "Deep workwear indigo with soft neutral ink and muted brass accents.", "zh": "深沉工裝靛藍搭配柔和中性文字與低彩度黃銅重點色。" },
+      "tags": ["dark", "cool", "professional", "low-glare", "focused"],
+      "preview": "../assets/Theme12.png",
+      "surface": "#1D2933",
+      "ink": "#DDE1DE",
+      "accent": "#AF9362",
+      "contrast": 72,
+      "semanticColors": { "diffAdded": "#86A98B", "diffRemoved": "#D18478", "skill": "#A696BB" }
     }
   ]
 }
