@@ -6,6 +6,15 @@ A static website for previewing and copying seven Codex material themes.
 It uses plain HTML, CSS, and browser JavaScript—there is no React, database,
 login, or application server.
 
+## 安裝 Codex Skill
+
+在 Codex 對話中輸入：
+
+```text
+請安裝 Skill：
+https://github.com/robinli/codex-material-themes/tree/main/.agents/skills/choose-codex-theme
+```
+
 ![Codex Material Themes preview](public/readme-preview.png)
 
 ## Edit the site
