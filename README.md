@@ -1,6 +1,6 @@
 # Codex Material Themes
 
-Codex Material Themes 提供七款適合不同工作情境的 Codex 主題。你可以透過網頁預覽主題並複製設定，也可以安裝 Codex Skill，在對話中描述偏好的明暗、色調、對比度或使用情境，由 Codex 推薦主題、協助選擇字體，並產生可匯入的主題設定。
+Codex Material Themes 提供十款適合不同工作情境的 Codex 主題。你可以透過網頁預覽主題並複製設定，也可以安裝 Codex Skill，在對話中描述偏好的明暗、色調、對比度或使用情境，由 Codex 推薦主題、協助選擇字體，並產生可匯入的主題設定。
 
 範例網站：[https://codex-material-themes.bud4net.chatgpt.site/](https://codex-material-themes.bud4net.chatgpt.site/)
 
@@ -32,6 +32,7 @@ Skill 會依序引導完成以下步驟：
 
 Skill 不會直接修改 Codex 設定或自動套用主題。匯入後若只關閉視窗仍未生效，請從工作管理員完整結束 Codex，再重新開啟。
 
+---
 ## Edit the site
 
 ![Codex Material Themes preview](public/readme-preview.png)
@@ -42,7 +43,7 @@ The example site is built with plain HTML, CSS, and browser JavaScript. It does 
 - `public/site.js`: theme data, Chinese/English text, language switching, theme
   selection, and copy-to-clipboard interaction.
 - `public/site.css`: layout and visual styling.
-- `public/themes/`: the seven preview images.
+- `public/themes/`: the ten preview images.
 
 ## Run locally
 
