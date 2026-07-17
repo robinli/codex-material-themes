@@ -13,6 +13,25 @@ Codex Material Themes 提供七款適合不同工作情境的 Codex 主題。你
 https://github.com/robinli/codex-material-themes/tree/main/.agents/skills/choose-codex-theme
 ```
 
+安裝完成後，下一輪對話即可使用 Skill；若尚未出現在 Codex 中，請重新啟動 Codex。
+
+## 使用 Codex Skill
+
+在 Codex 對話中描述想要的色調、明暗、對比度或使用情境，例如：
+
+```text
+請使用 $choose-codex-theme，幫我找適合夜間長時間閱讀、低眩光的主題。
+```
+
+Skill 會依序引導完成以下步驟：
+
+1. **選擇主題**：Codex 推薦一款適合情境的主題並顯示預覽圖。回覆「使用這個」即可確認，或回覆「換一個」取得其他建議。
+2. **選擇字體**：確認主題後，Codex 會提供 UI 字體與程式碼字體選項。可以回覆「使用預設字體」，或分別指定已安裝的字體名稱。
+3. **取得設定**：確認主題與兩種字體後，Codex 會產生一行完整的 `codex-theme-v1:` 主題設定。
+4. **手動匯入**：依 Codex 提供的本地化步驟，前往 `設定 → 外觀 → 匯入`，貼上完整設定並選擇 `匯入主題`。英文版介面會顯示對應的英文選單名稱。
+
+Skill 不會直接修改 Codex 設定或自動套用主題。匯入後若只關閉視窗仍未生效，請從工作管理員完整結束 Codex，再重新開啟。
+
 ## Edit the site
 
 ![Codex Material Themes preview](public/readme-preview.png)
