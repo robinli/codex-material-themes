@@ -48,6 +48,24 @@ codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#A9784D","contrast":69,
 codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#9FCB72","contrast":75,"fonts":{"code":"Cascadia Mono","ui":"Satoshi"},"ink":"#C4D7BE","opaqueWindows":true,"semanticColors":{"diffAdded":"#86C68A","diffRemoved":"#D48178","skill":"#B79BCD"},"surface":"#111A14"},"variant":"dark"}
 ```
 
+## 8. 港灣霧
+
+```text
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#3F7183","contrast":71,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#23343A","opaqueWindows":true,"semanticColors":{"diffAdded":"#397253","diffRemoved":"#A34C4C","skill":"#76558E"},"surface":"#D6E0E2"},"variant":"dark"}
+```
+
+## 9. 茄紫工作室
+
+```text
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#C989A5","contrast":67,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#E8DEE9","opaqueWindows":true,"semanticColors":{"diffAdded":"#8CB790","diffRemoved":"#DC8A88","skill":"#C8A4DF"},"surface":"#281C2F"},"variant":"dark"}
+```
+
+## 10. 琥珀終端
+
+```text
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#E6A84F","contrast":78,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#F1DFC1","opaqueWindows":true,"semanticColors":{"diffAdded":"#A6C77B","diffRemoved":"#E08A72","skill":"#C7A5D9"},"surface":"#17140F"},"variant":"dark"}
+```
+
 [1]: https://developers.openai.com/codex/reference/settings "
   Settings | ChatGPT Learn
 "

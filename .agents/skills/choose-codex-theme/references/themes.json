@@ -104,6 +104,45 @@
       "accent": "#9FCB72",
       "contrast": 75,
       "semanticColors": { "diffAdded": "#9EBB84", "diffRemoved": "#D9907E", "skill": "#C3A7D8" }
+    },
+    {
+      "id": 8,
+      "slug": "harbor-fog",
+      "name": { "en": "Harbor Fog", "zh": "港灣霧" },
+      "description": { "en": "Cool blue-grey daylight with crisp dark ink for calm, structured reading.", "zh": "冷調藍灰日光搭配清晰深色文字，適合平靜而有條理的閱讀。" },
+      "tags": ["light", "cool", "calm", "structured", "reading"],
+      "preview": "../assets/Theme08.png",
+      "surface": "#D6E0E2",
+      "ink": "#23343A",
+      "accent": "#3F7183",
+      "contrast": 71,
+      "semanticColors": { "diffAdded": "#397253", "diffRemoved": "#A34C4C", "skill": "#76558E" }
+    },
+    {
+      "id": 9,
+      "slug": "aubergine-studio",
+      "name": { "en": "Aubergine Studio", "zh": "茄紫工作室" },
+      "description": { "en": "Deep aubergine and dusty rose create a focused but expressive night workspace.", "zh": "深茄紫與霧玫瑰構成專注又帶創作感的夜間工作空間。" },
+      "tags": ["dark", "purple", "creative", "focused", "night"],
+      "preview": "../assets/Theme09.png",
+      "surface": "#281C2F",
+      "ink": "#E8DEE9",
+      "accent": "#C989A5",
+      "contrast": 67,
+      "semanticColors": { "diffAdded": "#8CB790", "diffRemoved": "#DC8A88", "skill": "#C8A4DF" }
+    },
+    {
+      "id": 10,
+      "slug": "amber-terminal",
+      "name": { "en": "Amber Terminal", "zh": "琥珀終端" },
+      "description": { "en": "Warm amber on near-black evokes a precise terminal built for maximum legibility.", "zh": "近黑底上的暖琥珀色，像為最高辨識度打造的精密終端機。" },
+      "tags": ["dark", "warm", "high-contrast", "terminal", "technical"],
+      "preview": "../assets/Theme10.png",
+      "surface": "#17140F",
+      "ink": "#F1DFC1",
+      "accent": "#E6A84F",
+      "contrast": 78,
+      "semanticColors": { "diffAdded": "#A6C77B", "diffRemoved": "#E08A72", "skill": "#C7A5D9" }
     }
   ]
 }
