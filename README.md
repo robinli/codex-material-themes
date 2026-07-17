@@ -1,5 +1,7 @@
 # Codex Material Themes
 
+![Codex Material Themes](public/og-10-themes.png)
+
 Codex Material Themes 提供十款適合不同工作情境的 Codex 主題。你可以透過網頁預覽主題並複製設定，也可以安裝 Codex Skill，在對話中描述偏好的明暗、色調、對比度或使用情境，由 Codex 推薦主題、協助選擇字體，並產生可匯入的主題設定。
 
 範例網站：[https://codex-material-themes.bud4net.chatgpt.site/](https://codex-material-themes.bud4net.chatgpt.site/)
