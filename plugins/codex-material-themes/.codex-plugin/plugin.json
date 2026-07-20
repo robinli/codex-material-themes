@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Guided Codex theme recommendations, previews, font selection, and localized import instructions.",
   "author": {
-    "name": "Robin",
+    "name": "Robin Li",
     "email": "robin@bud4.net",
     "url": "https://github.com/robinli"
   },
@@ -20,7 +20,7 @@
     "displayName": "Codex Material Themes",
     "shortDescription": "Choose and export a Codex theme",
     "longDescription": "Recommend and compare curated Codex themes, preview their appearance, choose UI and code fonts, and generate localized manual import instructions.",
-    "developerName": "Robin",
+    "developerName": "Robin Li",
     "category": "Productivity",
     "capabilities": [
       "Interactive"
