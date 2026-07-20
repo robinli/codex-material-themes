@@ -1,6 +1,6 @@
 {
   "name": "codex-material-themes",
-  "version": "0.1.0+codex.20260720035624",
+  "version": "1.0.0",
   "description": "Guided Codex theme recommendations, previews, font selection, and localized import instructions.",
   "author": {
     "name": "Robin",
@@ -26,6 +26,8 @@
       "Interactive"
     ],
     "websiteURL": "https://codex-material-themes.bud4net.chatgpt.site/",
+    "privacyPolicyURL": "https://codex-material-themes.bud4net.chatgpt.site/privacy/",
+    "termsOfServiceURL": "https://codex-material-themes.bud4net.chatgpt.site/terms/",
     "defaultPrompt": [
       "Recommend a low-glare Codex theme for long work sessions.",
       "Compare warm and cool Codex themes for me.",

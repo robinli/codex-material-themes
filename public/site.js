@@ -69,6 +69,9 @@ const copy = {
     copy: "複製主題設定",
     copied: "已複製設定",
     footer: "十二種數位材質，為長時間閱讀與專注工作調校。",
+    privacy: "隱私權",
+    terms: "使用條款",
+    support: "支援",
     top: "回到頂端",
   },
   en: {
@@ -119,6 +122,9 @@ const copy = {
     copy: "Copy theme settings",
     copied: "Settings copied",
     footer: "Twelve digital materials tuned for long reading and focused work.",
+    privacy: "Privacy",
+    terms: "Terms",
+    support: "Support",
     top: "Back to top",
   },
 };
@@ -218,7 +224,7 @@ function render() {
     <section class="guide-section" id="guide"><div class="section-heading"><p class="section-index">01 / HOW TO APPLY</p><div><h2>${t.guideTitle}</h2><p>${t.guideLead}</p></div></div><ol class="steps">${t.steps.map((step, index) => `<li><span>0${index + 1}</span><strong>${step}</strong>${index < 4 ? "<b>→</b>" : ""}</li>`).join("")}</ol><p class="guide-note"><b>${t.pathLabel}</b>${t.path}<br><span>${t.opaqueNote}</span></p></section>
     <section class="skill-section" id="skill"><div class="section-heading"><p class="section-index">02 / CODEX SKILL</p><div><h2>${t.skillTitle}</h2><p>${t.skillLead}</p></div></div><div class="skill-grid"><article class="skill-card"><span class="skill-card-index">01</span><h3>${t.installTitle}</h3><p>${t.installLead}</p><div class="skill-command"><span>${t.promptLabel}</span><code>${esc(t.installCommand)}</code></div><p class="skill-card-note">${t.installNote}</p></article><article class="skill-card"><span class="skill-card-index">02</span><h3>${t.useTitle}</h3><p>${t.useLead}</p><div class="skill-command"><span>${t.promptLabel}</span><code>${esc(t.useCommand)}</code></div></article></div><div class="skill-flow"><div class="skill-flow-heading"><span>03</span><h3>${t.workflowTitle}</h3></div><ol>${t.skillSteps.map((step, index) => `<li><span>0${index + 1}</span><strong>${step.title}</strong><p>${step.body}</p></li>`).join("")}</ol><p class="skill-note">${t.skillNote}</p></div></section>
     <section class="themes-section" id="themes"><div class="section-heading inverse"><p class="section-index">03 / THE COLLECTION</p><div><h2>${t.collection}</h2><p>${t.collectionLead}</p></div></div><div class="theme-workbench"><div class="theme-list">${themes.map((theme) => `<div class="theme-row ${theme.id === selectedId ? "active" : ""}"><button class="theme-select" data-select="${theme.id}"><span>${themeNumber(theme.id)}</span><span><strong>${locale === "zh" ? theme.zh : theme.en}</strong><small>${locale === "zh" ? theme.en : theme.zh}</small></span><em><i style="background:${theme.surface}"></i><i style="background:${theme.ink}"></i><i style="background:${theme.accent}"></i></em></button><button class="quick-copy" data-copy="${theme.id}" aria-label="${t.copy}">⧉</button></div>`).join("")}</div><article class="theme-preview" style="--surface:${selected.surface};--accent:${selected.accent}"><div class="preview-topline"><span>${t.selected.toUpperCase()} / ${themeNumber(selected.id)}</span><span>CONTRAST ${selected.contrast}</span></div><img class="preview-image" src="${selected.image}" alt="${esc(selected.en)} preview"><div class="preview-info"><div><p class="preview-en">${locale === "zh" ? selected.en : selected.zh}</p><h3>${locale === "zh" ? selected.zh : selected.en}</h3><p>${locale === "zh" ? selected.noteZh : selected.noteEn}</p></div><div class="palette"><div><i style="background:${selected.surface}"></i><small>${t.surface}<br>${selected.surface}</small></div><div><i style="background:${selected.ink}"></i><small>${t.ink}<br>${selected.ink}</small></div><div><i style="background:${selected.accent}"></i><small>${t.accent}<br>${selected.accent}</small></div></div></div><div class="font-panel"><div class="font-heading"><strong>${t.fonts}</strong><span>${t.fontHint}</span></div><div class="font-fields">${["ui", "code"].map((type) => `<div class="font-field"><span id="${type}-font-label">${type === "ui" ? t.uiFont : t.codeFont}</span><div class="font-combobox" data-font-combobox="${type}"><input type="text" data-font="${type}" value="${esc(selectedFonts[type])}" autocomplete="off" role="combobox" aria-autocomplete="none" aria-labelledby="${type}-font-label" aria-controls="${type}-font-menu" aria-expanded="false"><button type="button" class="font-toggle" data-font-toggle="${type}" aria-label="${t.showFontOptions}: ${type === "ui" ? t.uiFont : t.codeFont}" aria-controls="${type}-font-menu" aria-expanded="false"></button><div class="font-menu" id="${type}-font-menu" role="listbox" aria-labelledby="${type}-font-label" hidden>${fontOptions[type].map((font) => `<button type="button" role="option" data-font-option="${esc(font)}" data-font-type="${type}" aria-selected="${font === selectedFonts[type]}">${esc(font)}</button>`).join("")}</div></div></div>`).join("")}</div></div><div class="copy-panel"><code>${esc(themeValue(selected))}</code><button class="copy-button" data-copy="${selected.id}">${t.copy}</button></div></article></div></section>
-    <footer><div><span class="brand-mark">C</span><strong>Codex Material Themes / <a class="footer-author" href="https://github.com/robinli" target="_blank" rel="noopener noreferrer">Robin Li</a></strong></div><p>${t.footer}</p><a href="#top">${t.top}</a></footer>`;
+    <footer><div><span class="brand-mark">C</span><strong>Codex Material Themes / <a class="footer-author" href="https://github.com/robinli" target="_blank" rel="noopener noreferrer">Robin Li</a></strong></div><p>${t.footer}</p><nav class="footer-links" aria-label="Legal and support"><a href="./privacy/">${t.privacy}</a><a href="./terms/">${t.terms}</a><a href="./support/">${t.support}</a></nav><a href="#top">${t.top}</a></footer>`;
 }
 
 async function copyTheme(id) {
