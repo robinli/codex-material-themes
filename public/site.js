@@ -11,7 +11,7 @@ const semanticPalettes = {
   harbor: { diffAdded: "#397253", diffRemoved: "#A34C4C", skill: "#76558E" },
   aubergine: { diffAdded: "#8CB790", diffRemoved: "#DC8A88", skill: "#C8A4DF" },
   amber: { diffAdded: "#A6C77B", diffRemoved: "#E08A72", skill: "#C7A5D9" },
-  concrete: { diffAdded: "#2E5039", diffRemoved: "#75312F", skill: "#4E3D63" },
+  concrete: { diffAdded: "#2e5039", diffRemoved: "#75312f", skill: "#4e3d63" },
   indigo: { diffAdded: "#86A98B", diffRemoved: "#D18478", skill: "#A696BB" },
 };
 
@@ -26,7 +26,7 @@ const themes = [
   ["Harbor Fog", "港灣霧", "Cool blue-grey daylight with crisp dark ink for calm, structured reading.", "冷調藍灰日光搭配清晰深色文字，適合平靜而有條理的閱讀。", "#D6E0E2", "#23343A", "#3F7183", 71, "harbor"],
   ["Aubergine Studio", "茄紫工作室", "Deep aubergine and dusty rose create a focused but expressive night workspace.", "深茄紫與霧玫瑰構成專注又帶創作感的夜間工作空間。", "#281C2F", "#E8DEE9", "#C989A5", 67, "aubergine"],
   ["Amber Terminal", "琥珀終端", "Warm amber on near-black evokes a precise terminal built for maximum legibility.", "近黑底上的暖琥珀色，像為最高辨識度打造的精密終端機。", "#17140F", "#F1DFC1", "#E6A84F", 78, "amber"],
-  ["Concrete Studio", "清水模工作室", "Balanced concrete grey with dark graphite and a practical rust-brown accent.", "均衡的清水模灰搭配深石墨與實用的鐵鏽棕重點色。", "#B9BAB6", "#292D2E", "#60402F", 70, "concrete"],
+  ["Concrete Studio", "清水模工作室", "Balanced concrete grey with dark graphite and a practical rust-brown accent.", "均衡的清水模灰搭配深石墨與實用的鐵鏽棕重點色。", "#e4e4e4", "#414747", "#5a3a23", 70, "concrete"],
   ["Indigo Workwear", "靛藍工裝", "Deep workwear indigo with soft neutral ink and muted brass accents.", "深沉工裝靛藍搭配柔和中性文字與低彩度黃銅重點色。", "#1D2933", "#DDE1DE", "#AF9362", 72, "indigo"],
 ].map(([en, zh, noteEn, noteZh, surface, ink, accent, contrast, semanticPalette], index) => ({
   id: index + 1, en, zh, noteEn, noteZh, surface, ink, accent, contrast,

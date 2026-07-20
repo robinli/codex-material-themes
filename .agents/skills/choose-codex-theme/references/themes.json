@@ -151,11 +151,11 @@
       "description": { "en": "Balanced concrete grey with dark graphite and a practical rust-brown accent.", "zh": "均衡的清水模灰搭配深石墨與實用的鐵鏽棕重點色。" },
       "tags": ["light", "neutral", "professional", "structured", "low-glare"],
       "preview": "../assets/Theme11.png",
-      "surface": "#B9BAB6",
-      "ink": "#292D2E",
-      "accent": "#60402F",
+      "surface": "#e4e4e4",
+      "ink": "#414747",
+      "accent": "#5a3a23",
       "contrast": 70,
-      "semanticColors": { "diffAdded": "#2E5039", "diffRemoved": "#75312F", "skill": "#4E3D63" }
+      "semanticColors": { "diffAdded": "#2e5039", "diffRemoved": "#75312f", "skill": "#4e3d63" }
     },
     {
       "id": 12,
