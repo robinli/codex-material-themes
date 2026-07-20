@@ -1,37 +1,23 @@
 const siteAssetBase = location.protocol === "file:" ? "./public/" : "./";
 
-const fontOptions = {
-  ui: ["Noto Sans TC", "Microsoft JhengHei UI", "Segoe UI Variable"],
-  code: ["Cascadia Mono", "Cascadia Code", "JetBrains Mono", "monospace"],
-};
+const catalog = globalThis.CODEX_MATERIAL_THEME_CATALOG;
+if (!catalog) throw new Error("Theme catalog failed to load.");
 
-const semanticPalettes = {
-  dark: { diffAdded: "#9EBB84", diffRemoved: "#D9907E", skill: "#C3A7D8" },
-  light: { diffAdded: "#477A4A", diffRemoved: "#D9907E", skill: "#C3A7D8" },
-  harbor: { diffAdded: "#397253", diffRemoved: "#A34C4C", skill: "#76558E" },
-  aubergine: { diffAdded: "#8CB790", diffRemoved: "#DC8A88", skill: "#C8A4DF" },
-  amber: { diffAdded: "#A6C77B", diffRemoved: "#E08A72", skill: "#C7A5D9" },
-  concrete: { diffAdded: "#2e5039", diffRemoved: "#75312f", skill: "#4e3d63" },
-  indigo: { diffAdded: "#86A98B", diffRemoved: "#D18478", skill: "#A696BB" },
-};
-
-const themes = [
-  ["Chalkboard Green", "黑板綠", "Calm and low-glare, tuned for long reading sessions and focused work.", "沉穩低眩光，適合長時間閱讀與專注工作。", "#18382B", "#E8E3D3", "#D4B95E", 68, "dark"],
-  ["Cafe Walnut", "咖啡胡桃木", "Warm walnut and cream tones, like a cafe reading table at dusk.", "溫暖的胡桃木與奶油色，像傍晚咖啡館的閱讀桌。", "#3A241B", "#F1E2CF", "#D6A756", 70, "dark"],
-  ["Parchment & Ink", "羊皮紙與墨", "A gentle paper ground that recalls ink, letterpress, and old book pages.", "柔和紙質底色，令人想起墨水、活字印刷與舊書頁。", "#E4D8BE", "#302A25", "#8C5A3C", 72, "light"],
-  ["Drafting Blue", "製圖藍", "Deep drafting blue with clear type, made for structured thinking.", "深邃製圖藍與清晰字體，為結構化思考而設計。", "#163A52", "#DCE8EC", "#E0B85C", 70, "dark"],
-  ["Midnight Study", "午夜研讀", "Near-black neutrals and muted gold keep late-night work composed.", "近黑中性色與低調金色，讓深夜工作保持平靜。", "#181817", "#D5D0C7", "#BFA36A", 62, "dark"],
-  ["Recycled Paper", "再生紙", "Neutral grey ink on recycled-paper tones: bright without the glare.", "中性灰墨搭配再生紙色調：明亮卻不刺眼。", "#D3CEC3", "#333230", "#A9784D", 69, "light"],
-  ["Field Instrument", "野外儀器", "High-visibility green on deep black-green, crisp as a night instrument panel.", "高辨識綠色置於深黑綠底，如夜間儀器面板般清晰。", "#111A14", "#C4D7BE", "#9FCB72", 75, "dark"],
-  ["Harbor Fog", "港灣霧", "Cool blue-grey daylight with crisp dark ink for calm, structured reading.", "冷調藍灰日光搭配清晰深色文字，適合平靜而有條理的閱讀。", "#D6E0E2", "#23343A", "#3F7183", 71, "harbor"],
-  ["Aubergine Studio", "茄紫工作室", "Deep aubergine and dusty rose create a focused but expressive night workspace.", "深茄紫與霧玫瑰構成專注又帶創作感的夜間工作空間。", "#281C2F", "#E8DEE9", "#C989A5", 67, "aubergine"],
-  ["Amber Terminal", "琥珀終端", "Warm amber on near-black evokes a precise terminal built for maximum legibility.", "近黑底上的暖琥珀色，像為最高辨識度打造的精密終端機。", "#17140F", "#F1DFC1", "#E6A84F", 78, "amber"],
-  ["Concrete Studio", "清水模工作室", "Balanced concrete grey with dark graphite and a practical rust-brown accent.", "均衡的清水模灰搭配深石墨與實用的鐵鏽棕重點色。", "#e4e4e4", "#414747", "#5a3a23", 70, "concrete"],
-  ["Indigo Workwear", "靛藍工裝", "Deep workwear indigo with soft neutral ink and muted brass accents.", "深沉工裝靛藍搭配柔和中性文字與低彩度黃銅重點色。", "#1D2933", "#DDE1DE", "#AF9362", 72, "indigo"],
-].map(([en, zh, noteEn, noteZh, surface, ink, accent, contrast, semanticPalette], index) => ({
-  id: index + 1, en, zh, noteEn, noteZh, surface, ink, accent, contrast,
-  semanticColors: semanticPalettes[semanticPalette],
-  image: `${siteAssetBase}themes/Theme${String(index + 1).padStart(2, "0")}.png`,
+const fontOptions = catalog.fontOptions;
+const themes = catalog.themes.map((theme) => ({
+  id: theme.id,
+  en: theme.name.en,
+  zh: theme.name.zh,
+  noteEn: theme.description.en,
+  noteZh: theme.description.zh,
+  surface: theme.surface,
+  ink: theme.ink,
+  accent: theme.accent,
+  contrast: theme.contrast,
+  fonts: theme.fonts,
+  semanticColors: theme.semanticColors,
+  variant: theme.variant,
+  image: `${siteAssetBase}themes/${theme.preview.split("/").pop()}`,
 }));
 
 const copy = {
@@ -139,27 +125,49 @@ const copy = {
 
 let locale = localStorage.getItem("codex-material-locale") || (navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en");
 let selectedId = 1;
+const storedFonts = {
+  ui: localStorage.getItem("codex-material-ui-font"),
+  code: localStorage.getItem("codex-material-code-font"),
+};
+const fontOverrides = {
+  ui: Boolean(storedFonts.ui),
+  code: Boolean(storedFonts.code),
+};
 const selectedFonts = {
-  ui: localStorage.getItem("codex-material-ui-font") || fontOptions.ui[0],
-  code: localStorage.getItem("codex-material-code-font") || fontOptions.code[0],
+  ui: storedFonts.ui || defaultFontForTheme(themes[0], "ui"),
+  code: storedFonts.code || defaultFontForTheme(themes[0], "code"),
 };
 const app = document.querySelector("#app");
 const esc = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[char]);
 const themeNumber = (id) => String(id).padStart(2, "0");
 
+function defaultFontForTheme(theme, type) {
+  return theme.fonts?.[type] || catalog.defaults.fonts[type];
+}
+
+function fontForTheme(theme, type) {
+  return fontOverrides[type] ? selectedFonts[type] : defaultFontForTheme(theme, type);
+}
+
+function applyThemeFonts(theme) {
+  for (const type of ["ui", "code"]) {
+    if (!fontOverrides[type]) selectedFonts[type] = defaultFontForTheme(theme, type);
+  }
+}
+
 function themeValue(theme) {
   return `codex-theme-v1:${JSON.stringify({
-    codeThemeId: "codex",
+    codeThemeId: catalog.codeThemeId,
     theme: {
       accent: theme.accent,
       contrast: theme.contrast,
-      fonts: { code: selectedFonts.code, ui: selectedFonts.ui },
+      fonts: { code: fontForTheme(theme, "code"), ui: fontForTheme(theme, "ui") },
       ink: theme.ink,
-      opaqueWindows: true,
+      opaqueWindows: catalog.defaults.opaqueWindows,
       semanticColors: theme.semanticColors,
       surface: theme.surface,
     },
-    variant: "dark",
+    variant: theme.variant || catalog.defaults.variant,
   })}`;
 }
 
@@ -186,8 +194,11 @@ function openFontMenu(type) {
 }
 
 function setFont(type, value) {
-  selectedFonts[type] = value.trim() || fontOptions[type][0];
-  localStorage.setItem(`codex-material-${type}-font`, selectedFonts[type]);
+  const trimmedValue = value.trim();
+  fontOverrides[type] = Boolean(trimmedValue);
+  selectedFonts[type] = trimmedValue || defaultFontForTheme(themes[selectedId - 1], type);
+  if (fontOverrides[type]) localStorage.setItem(`codex-material-${type}-font`, selectedFonts[type]);
+  else localStorage.removeItem(`codex-material-${type}-font`);
   const input = document.querySelector(`input[data-font="${type}"]`);
   if (input) input.value = selectedFonts[type];
   document.querySelectorAll(`[data-font-combobox="${type}"] [data-font-option]`).forEach((option) => {
@@ -199,10 +210,11 @@ function setFont(type, value) {
 function render() {
   const t = copy[locale];
   const selected = themes[selectedId - 1];
+  const heroTheme = themes[0];
   document.documentElement.lang = locale === "zh" ? "zh-Hant" : "en";
   app.innerHTML = `
     <header class="site-header"><a class="brand" href="#top"><span class="brand-mark">C</span><span>CODEX / MATERIAL THEMES</span></a><div class="header-actions"><nav><a href="#guide">${t.guide}</a><a href="#skill">${t.skillNav}</a><a href="#themes">${t.themes}</a></nav><div class="language-switch"><button data-locale="zh" class="${locale === "zh" ? "active" : ""}">中文</button><span>/</span><button data-locale="en" class="${locale === "en" ? "active" : ""}">EN</button></div></div></header>
-    <section class="hero" id="top"><div class="hero-copy"><p class="eyebrow"><span></span>${t.eyebrow}</p><h1>${t.title.replace("\n", "<br>")}</h1><p class="hero-lead">${t.lead}</p><div class="hero-actions"><a class="button primary" href="#themes">${t.choose} <b>→</b></a><a class="text-link" href="#guide">${t.how} →</a></div><div class="hero-meta"><div><strong>${themeNumber(themes.length)}</strong><span>${t.meta[0]}</span></div><div><strong>01</strong><span>${t.meta[1]}</span></div><div><strong>∞</strong><span>${t.meta[2]}</span></div></div></div><div class="hero-visual"><div class="material-label">01 / CHALKBOARD GREEN</div><div class="image-frame"><img src="${siteAssetBase}themes/Theme01.png" alt="Chalkboard Green preview"></div><div class="hero-swatches"><i style="background:#18382B"></i><i style="background:#E8E3D3"></i><i style="background:#D4B95E"></i></div></div></section>
+    <section class="hero" id="top"><div class="hero-copy"><p class="eyebrow"><span></span>${t.eyebrow}</p><h1>${t.title.replace("\n", "<br>")}</h1><p class="hero-lead">${t.lead}</p><div class="hero-actions"><a class="button primary" href="#themes">${t.choose} <b>→</b></a><a class="text-link" href="#guide">${t.how} →</a></div><div class="hero-meta"><div><strong>${themeNumber(themes.length)}</strong><span>${t.meta[0]}</span></div><div><strong>01</strong><span>${t.meta[1]}</span></div><div><strong>∞</strong><span>${t.meta[2]}</span></div></div></div><div class="hero-visual"><div class="material-label">${themeNumber(heroTheme.id)} / ${heroTheme.en.toUpperCase()}</div><div class="image-frame"><img src="${heroTheme.image}" alt="${esc(heroTheme.en)} preview"></div><div class="hero-swatches"><i style="background:${heroTheme.surface}"></i><i style="background:${heroTheme.ink}"></i><i style="background:${heroTheme.accent}"></i></div></div></section>
     <section class="guide-section" id="guide"><div class="section-heading"><p class="section-index">01 / HOW TO APPLY</p><div><h2>${t.guideTitle}</h2><p>${t.guideLead}</p></div></div><ol class="steps">${t.steps.map((step, index) => `<li><span>0${index + 1}</span><strong>${step}</strong>${index < 4 ? "<b>→</b>" : ""}</li>`).join("")}</ol><p class="guide-note"><b>${t.pathLabel}</b>${t.path}<br><span>${t.opaqueNote}</span></p></section>
     <section class="skill-section" id="skill"><div class="section-heading"><p class="section-index">02 / CODEX SKILL</p><div><h2>${t.skillTitle}</h2><p>${t.skillLead}</p></div></div><div class="skill-grid"><article class="skill-card"><span class="skill-card-index">01</span><h3>${t.installTitle}</h3><p>${t.installLead}</p><div class="skill-command"><span>${t.promptLabel}</span><code>${esc(t.installCommand)}</code></div><p class="skill-card-note">${t.installNote}</p></article><article class="skill-card"><span class="skill-card-index">02</span><h3>${t.useTitle}</h3><p>${t.useLead}</p><div class="skill-command"><span>${t.promptLabel}</span><code>${esc(t.useCommand)}</code></div></article></div><div class="skill-flow"><div class="skill-flow-heading"><span>03</span><h3>${t.workflowTitle}</h3></div><ol>${t.skillSteps.map((step, index) => `<li><span>0${index + 1}</span><strong>${step.title}</strong><p>${step.body}</p></li>`).join("")}</ol><p class="skill-note">${t.skillNote}</p></div></section>
     <section class="themes-section" id="themes"><div class="section-heading inverse"><p class="section-index">03 / THE COLLECTION</p><div><h2>${t.collection}</h2><p>${t.collectionLead}</p></div></div><div class="theme-workbench"><div class="theme-list">${themes.map((theme) => `<div class="theme-row ${theme.id === selectedId ? "active" : ""}"><button class="theme-select" data-select="${theme.id}"><span>${themeNumber(theme.id)}</span><span><strong>${locale === "zh" ? theme.zh : theme.en}</strong><small>${locale === "zh" ? theme.en : theme.zh}</small></span><em><i style="background:${theme.surface}"></i><i style="background:${theme.ink}"></i><i style="background:${theme.accent}"></i></em></button><button class="quick-copy" data-copy="${theme.id}" aria-label="${t.copy}">⧉</button></div>`).join("")}</div><article class="theme-preview" style="--surface:${selected.surface};--accent:${selected.accent}"><div class="preview-topline"><span>${t.selected.toUpperCase()} / ${themeNumber(selected.id)}</span><span>CONTRAST ${selected.contrast}</span></div><img class="preview-image" src="${selected.image}" alt="${esc(selected.en)} preview"><div class="preview-info"><div><p class="preview-en">${locale === "zh" ? selected.en : selected.zh}</p><h3>${locale === "zh" ? selected.zh : selected.en}</h3><p>${locale === "zh" ? selected.noteZh : selected.noteEn}</p></div><div class="palette"><div><i style="background:${selected.surface}"></i><small>${t.surface}<br>${selected.surface}</small></div><div><i style="background:${selected.ink}"></i><small>${t.ink}<br>${selected.ink}</small></div><div><i style="background:${selected.accent}"></i><small>${t.accent}<br>${selected.accent}</small></div></div></div><div class="font-panel"><div class="font-heading"><strong>${t.fonts}</strong><span>${t.fontHint}</span></div><div class="font-fields">${["ui", "code"].map((type) => `<div class="font-field"><span id="${type}-font-label">${type === "ui" ? t.uiFont : t.codeFont}</span><div class="font-combobox" data-font-combobox="${type}"><input type="text" data-font="${type}" value="${esc(selectedFonts[type])}" autocomplete="off" role="combobox" aria-autocomplete="none" aria-labelledby="${type}-font-label" aria-controls="${type}-font-menu" aria-expanded="false"><button type="button" class="font-toggle" data-font-toggle="${type}" aria-label="${t.showFontOptions}: ${type === "ui" ? t.uiFont : t.codeFont}" aria-controls="${type}-font-menu" aria-expanded="false"></button><div class="font-menu" id="${type}-font-menu" role="listbox" aria-labelledby="${type}-font-label" hidden>${fontOptions[type].map((font) => `<button type="button" role="option" data-font-option="${esc(font)}" data-font-type="${type}" aria-selected="${font === selectedFonts[type]}">${esc(font)}</button>`).join("")}</div></div></div>`).join("")}</div></div><div class="copy-panel"><code>${esc(themeValue(selected))}</code><button class="copy-button" data-copy="${selected.id}">${t.copy}</button></div></article></div></section>
@@ -233,7 +245,7 @@ app.addEventListener("click", (event) => {
     return;
   }
   if (button.dataset.locale) { locale = button.dataset.locale; localStorage.setItem("codex-material-locale", locale); render(); }
-  if (button.dataset.select) { selectedId = Number(button.dataset.select); render(); document.querySelector(".theme-preview")?.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+  if (button.dataset.select) { selectedId = Number(button.dataset.select); applyThemeFonts(themes[selectedId - 1]); render(); document.querySelector(".theme-preview")?.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
   if (button.dataset.copy) copyTheme(Number(button.dataset.copy));
 });
 
@@ -242,7 +254,9 @@ app.addEventListener("input", (event) => {
   if (!input) return;
   const type = input.dataset.font;
   selectedFonts[type] = input.value;
-  localStorage.setItem(`codex-material-${type}-font`, input.value);
+  fontOverrides[type] = Boolean(input.value.trim());
+  if (fontOverrides[type]) localStorage.setItem(`codex-material-${type}-font`, input.value);
+  else localStorage.removeItem(`codex-material-${type}-font`);
   updateThemeCode();
 });
 

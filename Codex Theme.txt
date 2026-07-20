@@ -69,7 +69,7 @@ codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#E6A84F","contrast":78,
 ## 11. 清水模工作室
 
 ```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#5a3a23","contrast":70,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#414747","opaqueWindows":true,"semanticColors":{"diffAdded":"#2e5039","diffRemoved":"#75312f","skill":"#4e3d63"},"surface":"#e4e4e4"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#5a3a23","contrast":70,"fonts":{"code":"Cascadia Mono","ui":"Microsoft JhengHei UI"},"ink":"#414141","opaqueWindows":true,"semanticColors":{"diffAdded":"#2e5039","diffRemoved":"#75312f","skill":"#4e3d63"},"surface":"#e4e4e4"},"variant":"dark"}
 ```
 
 ## 12. 靛藍工裝

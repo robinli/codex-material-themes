@@ -6,10 +6,12 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "node scripts/clean-dist.mjs && vite build && node scripts/create-site-worker.mjs",
+    "sync:themes": "node scripts/sync-theme-catalog.mjs",
+    "check:themes": "node scripts/sync-theme-catalog.mjs --check",
+    "dev": "npm run sync:themes && vite",
+    "build": "npm run sync:themes && node scripts/clean-dist.mjs && vite build && node scripts/create-site-worker.mjs",
     "start": "vite preview",
-    "test": "npm run build"
+    "test": "npm run check:themes && npm run build"
   },
   "devDependencies": {
     "vite": "8.0.13"

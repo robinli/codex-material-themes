@@ -1,0 +1,41 @@
+{
+  "name": "codex-material-themes",
+  "version": "0.1.0+codex.20260720035624",
+  "description": "Guided Codex theme recommendations, previews, font selection, and localized import instructions.",
+  "author": {
+    "name": "Robin",
+    "email": "robin@bud4.net",
+    "url": "https://github.com/robinli"
+  },
+  "homepage": "https://codex-material-themes.bud4net.chatgpt.site/",
+  "repository": "https://github.com/robinli/codex-material-themes",
+  "keywords": [
+    "codex",
+    "themes",
+    "appearance",
+    "accessibility"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Material Themes",
+    "shortDescription": "Choose and export a Codex theme",
+    "longDescription": "Recommend and compare curated Codex themes, preview their appearance, choose UI and code fonts, and generate localized manual import instructions.",
+    "developerName": "Robin",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive"
+    ],
+    "websiteURL": "https://codex-material-themes.bud4net.chatgpt.site/",
+    "defaultPrompt": [
+      "Recommend a low-glare Codex theme for long work sessions.",
+      "Compare warm and cool Codex themes for me.",
+      "Generate a Codex theme import setting with my preferred fonts."
+    ],
+    "brandColor": "#BFA36A",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.png",
+    "screenshots": [
+      "./assets/screenshot-1.png"
+    ]
+  }
+}

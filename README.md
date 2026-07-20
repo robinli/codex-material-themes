@@ -35,15 +35,31 @@ Skill 會依序引導完成以下步驟：
 Skill 不會直接修改 Codex 設定或自動套用主題。匯入後若只關閉視窗仍未生效，請從工作管理員完整結束 Codex，再重新開啟。
 
 ---
+## Shared theme source
+
+`catalog/references/themes.json` and `catalog/assets/` are the only editable
+sources for the twelve themes, UI/code font options, and preview images.
+
+```powershell
+npm run sync:themes
+npm run check:themes
+```
+
+The sync command generates the browser catalog and copies the catalog plus
+preview assets into the standalone Skill and Plugin packages. The check command
+fails when any generated copy differs from the shared source. Both `npm run dev`
+and `npm run build` synchronize the generated files first.
+
 ## Edit the site
 
 The example site is built with plain HTML, CSS, and browser JavaScript. It does not require React, a database, login, or an application server.
 
 - `index.html`: page metadata and the HTML entry point.
-- `public/site.js`: theme data, Chinese/English text, language switching, theme
+- `public/site.js`: Chinese/English site text, language switching, theme
   selection, and copy-to-clipboard interaction.
+- `public/theme-catalog.js`: generated browser catalog; do not edit directly.
 - `public/site.css`: layout and visual styling.
-- `public/themes/`: the twelve preview images.
+- `public/themes/`: generated copies of the twelve preview images.
 
 ## Run locally
 

@@ -25,9 +25,17 @@
   <body>
     <main id="app"></main>
     <script>
-      const siteScript = document.createElement("script");
-      siteScript.src = `${assetBase}site.js`;
-      document.body.append(siteScript);
+      const catalogScript = document.createElement("script");
+      catalogScript.src = `${assetBase}theme-catalog.js`;
+      catalogScript.addEventListener("load", () => {
+        const siteScript = document.createElement("script");
+        siteScript.src = `${assetBase}site.js`;
+        document.body.append(siteScript);
+      });
+      catalogScript.addEventListener("error", () => {
+        document.querySelector("#app").textContent = "Theme catalog failed to load.";
+      });
+      document.body.append(catalogScript);
     </script>
   </body>
 </html>
