@@ -35,9 +35,6 @@
     ],
     "brandColor": "#BFA36A",
     "composerIcon": "./assets/icon.svg",
-    "logo": "./assets/logo.png",
-    "screenshots": [
-      "./assets/screenshot-1.png"
-    ]
+    "logo": "./assets/icon.svg"
   }
 }
