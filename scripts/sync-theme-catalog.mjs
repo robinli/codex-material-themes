@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -32,14 +32,15 @@ function validateCatalog(value) {
   assert(value.defaults?.fonts?.code, "defaults.fonts.code is required.");
   assert(Array.isArray(value.fontOptions?.ui) && value.fontOptions.ui.length > 0, "fontOptions.ui is required.");
   assert(Array.isArray(value.fontOptions?.code) && value.fontOptions.code.length > 0, "fontOptions.code is required.");
-  assert(Array.isArray(value.themes) && value.themes.length === 12, "themes must contain exactly 12 entries.");
+  assert(Array.isArray(value.themes) && value.themes.length === 8, "themes must contain exactly 8 entries.");
 
   const ids = new Set();
   const slugs = new Set();
   const previews = new Set();
 
-  for (const theme of value.themes) {
+  for (const [index, theme] of value.themes.entries()) {
     assert(Number.isInteger(theme.id), "Each theme requires an integer id.");
+    assert(theme.id === index + 1, `Theme ids must be sequential; expected ${index + 1}, received ${theme.id}.`);
     assert(!ids.has(theme.id), `Duplicate theme id: ${theme.id}.`);
     ids.add(theme.id);
     assert(typeof theme.slug === "string" && theme.slug, `Theme ${theme.id} requires a slug.`);
@@ -49,6 +50,8 @@ function validateCatalog(value) {
     assert(theme.description?.en && theme.description?.zh, `${theme.slug} requires English and Chinese descriptions.`);
     assert(Array.isArray(theme.tags), `${theme.slug}.tags must be an array.`);
     assert(/^\.\.\/assets\/[^/\\]+\.png$/i.test(theme.preview), `${theme.slug}.preview must point to ../assets/<file>.png.`);
+    const expectedPreview = `../assets/Theme${String(theme.id).padStart(2, "0")}.png`;
+    assert(theme.preview === expectedPreview, `${theme.slug}.preview must be ${expectedPreview}.`);
     assert(!previews.has(theme.preview), `Duplicate preview path: ${theme.preview}.`);
     previews.add(theme.preview);
     for (const role of ["ui", "code"]) {
@@ -76,6 +79,7 @@ const skillRoots = [
 
 const staleTargets = [];
 const syncedTargets = [];
+const removedTargets = [];
 
 async function targetMatches(source, target) {
   try {
@@ -115,6 +119,28 @@ async function syncText(content, target) {
   syncedTargets.push(target);
 }
 
+async function syncPreviewDirectory(directory, expectedNames) {
+  await mkdir(directory, { recursive: true });
+  const names = await readdir(directory);
+  for (const name of names) {
+    if (!/^Theme\d{2}\.png$/i.test(name) || expectedNames.has(name)) continue;
+    const target = join(directory, name);
+    if (checkOnly) {
+      staleTargets.push(target);
+    } else {
+      await unlink(target);
+      removedTargets.push(target);
+    }
+  }
+}
+
+const previewNames = new Set(catalog.themes.map((theme) => basename(theme.preview)));
+await syncPreviewDirectory(sourceAssetsPath, previewNames);
+await syncPreviewDirectory(join(projectRoot, "public", "themes"), previewNames);
+for (const skillRoot of skillRoots) {
+  await syncPreviewDirectory(join(skillRoot, "assets"), previewNames);
+}
+
 for (const skillRoot of skillRoots) {
   await syncFile(sourceCatalogPath, join(skillRoot, "references", "themes.json"));
 }
@@ -146,8 +172,8 @@ if (staleTargets.length > 0) {
   process.exitCode = 1;
 } else if (checkOnly) {
   console.log("Theme catalog outputs are in sync.");
-} else if (syncedTargets.length > 0) {
-  console.log(`Synchronized ${syncedTargets.length} theme catalog outputs.`);
+} else if (syncedTargets.length > 0 || removedTargets.length > 0) {
+  console.log(`Synchronized ${syncedTargets.length} theme catalog outputs and removed ${removedTargets.length} stale previews.`);
 } else {
   console.log("Theme catalog outputs are already in sync.");
 }

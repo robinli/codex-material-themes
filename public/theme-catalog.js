@@ -85,35 +85,6 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
     },
     {
       "id": 3,
-      "slug": "parchment-and-ink",
-      "name": {
-        "en": "Parchment & Ink",
-        "zh": "羊皮紙與墨"
-      },
-      "description": {
-        "en": "A gentle paper ground that recalls ink, letterpress, and old book pages.",
-        "zh": "柔和紙質底色，令人想起墨水、活字印刷與舊書頁。"
-      },
-      "tags": [
-        "light",
-        "warm",
-        "paper",
-        "editorial",
-        "long-reading"
-      ],
-      "preview": "../assets/Theme03.png",
-      "surface": "#E4D8BE",
-      "ink": "#302A25",
-      "accent": "#8C5A3C",
-      "contrast": 72,
-      "semanticColors": {
-        "diffAdded": "#477A4A",
-        "diffRemoved": "#D9907E",
-        "skill": "#C3A7D8"
-      }
-    },
-    {
-      "id": 4,
       "slug": "drafting-blue",
       "name": {
         "en": "Drafting Blue",
@@ -130,7 +101,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "technical",
         "clear"
       ],
-      "preview": "../assets/Theme04.png",
+      "preview": "../assets/Theme03.png",
       "surface": "#163A52",
       "ink": "#DCE8EC",
       "accent": "#E0B85C",
@@ -142,7 +113,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
       }
     },
     {
-      "id": 5,
+      "id": 4,
       "slug": "midnight-study",
       "name": {
         "en": "Midnight Study",
@@ -159,7 +130,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "late-night",
         "focused"
       ],
-      "preview": "../assets/Theme05.png",
+      "preview": "../assets/Theme04.png",
       "surface": "#181817",
       "ink": "#D5D0C7",
       "accent": "#BFA36A",
@@ -171,36 +142,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
       }
     },
     {
-      "id": 6,
-      "slug": "recycled-paper",
-      "name": {
-        "en": "Recycled Paper",
-        "zh": "再生紙"
-      },
-      "description": {
-        "en": "Neutral grey ink on recycled-paper tones: bright without the glare.",
-        "zh": "中性灰墨搭配再生紙色調：明亮卻不刺眼。"
-      },
-      "tags": [
-        "light",
-        "neutral",
-        "paper",
-        "low-glare",
-        "reading"
-      ],
-      "preview": "../assets/Theme06.png",
-      "surface": "#D3CEC3",
-      "ink": "#333230",
-      "accent": "#A9784D",
-      "contrast": 69,
-      "semanticColors": {
-        "diffAdded": "#477A4A",
-        "diffRemoved": "#D9907E",
-        "skill": "#C3A7D8"
-      }
-    },
-    {
-      "id": 7,
+      "id": 5,
       "slug": "field-instrument",
       "name": {
         "en": "Field Instrument",
@@ -217,7 +159,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "technical",
         "instrument"
       ],
-      "preview": "../assets/Theme07.png",
+      "preview": "../assets/Theme05.png",
       "surface": "#111A14",
       "ink": "#C4D7BE",
       "accent": "#9FCB72",
@@ -229,36 +171,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
       }
     },
     {
-      "id": 8,
-      "slug": "harbor-fog",
-      "name": {
-        "en": "Harbor Fog",
-        "zh": "港灣霧"
-      },
-      "description": {
-        "en": "Cool blue-grey daylight with crisp dark ink for calm, structured reading.",
-        "zh": "冷調藍灰日光搭配清晰深色文字，適合平靜而有條理的閱讀。"
-      },
-      "tags": [
-        "light",
-        "cool",
-        "calm",
-        "structured",
-        "reading"
-      ],
-      "preview": "../assets/Theme08.png",
-      "surface": "#D6E0E2",
-      "ink": "#23343A",
-      "accent": "#3F7183",
-      "contrast": 71,
-      "semanticColors": {
-        "diffAdded": "#397253",
-        "diffRemoved": "#A34C4C",
-        "skill": "#76558E"
-      }
-    },
-    {
-      "id": 9,
+      "id": 6,
       "slug": "aubergine-studio",
       "name": {
         "en": "Aubergine Studio",
@@ -275,7 +188,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "focused",
         "night"
       ],
-      "preview": "../assets/Theme09.png",
+      "preview": "../assets/Theme06.png",
       "surface": "#281C2F",
       "ink": "#E8DEE9",
       "accent": "#C989A5",
@@ -287,7 +200,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
       }
     },
     {
-      "id": 10,
+      "id": 7,
       "slug": "amber-terminal",
       "name": {
         "en": "Amber Terminal",
@@ -304,7 +217,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "terminal",
         "technical"
       ],
-      "preview": "../assets/Theme10.png",
+      "preview": "../assets/Theme07.png",
       "surface": "#17140F",
       "ink": "#F1DFC1",
       "accent": "#E6A84F",
@@ -316,40 +229,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
       }
     },
     {
-      "id": 11,
-      "slug": "concrete-studio",
-      "name": {
-        "en": "Concrete Studio",
-        "zh": "清水模工作室"
-      },
-      "description": {
-        "en": "Balanced concrete grey with dark graphite and a practical rust-brown accent.",
-        "zh": "均衡的清水模灰搭配深石墨與實用的鐵鏽棕重點色。"
-      },
-      "tags": [
-        "light",
-        "neutral",
-        "professional",
-        "structured",
-        "low-glare"
-      ],
-      "preview": "../assets/Theme11.png",
-      "fonts": {
-        "ui": "Microsoft JhengHei UI",
-        "code": "Cascadia Mono"
-      },
-      "surface": "#e4e4e4",
-      "ink": "#323232",
-      "accent": "#5a3a23",
-      "contrast": 70,
-      "semanticColors": {
-        "diffAdded": "#2e5039",
-        "diffRemoved": "#75312f",
-        "skill": "#4e3d63"
-      }
-    },
-    {
-      "id": 12,
+      "id": 8,
       "slug": "indigo-workwear",
       "name": {
         "en": "Indigo Workwear",
@@ -366,7 +246,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "low-glare",
         "focused"
       ],
-      "preview": "../assets/Theme12.png",
+      "preview": "../assets/Theme08.png",
       "surface": "#1D2933",
       "ink": "#DDE1DE",
       "accent": "#AF9362",

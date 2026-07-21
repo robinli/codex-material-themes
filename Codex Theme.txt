@@ -1,83 +1,53 @@
-Codex 的匯入文字格式為：
+Codex 自訂外觀主題格式：
 
 ```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"色碼","contrast":數值,"fonts":{"code":null,"ui":null},"ink":"前景色","opaqueWindows":true,"semanticColors":{"diffAdded":"新增差異色","diffRemoved":"刪除差異色","skill":"技能色"},"surface":"背景色"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"強調色","contrast":數值,"fonts":{"code":"程式碼字體","ui":"UI 字體"},"ink":"前景色","opaqueWindows":true,"semanticColors":{"diffAdded":"新增差異色","diffRemoved":"刪除差異色","skill":"Skill 色"},"surface":"背景色"},"variant":"dark"}
 ```
 
-`opaqueWindows:true` 代表關閉半透明側邊欄。以下每組可整行複製，貼入「匯入」。([OpenAI 開發者][1])
-
-## 1. 傳統綠色黑板
+## 1. 黑板綠
 
 ```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#D4B95E","contrast":68,"fonts":{"code":"Cascadia Mono","ui":"Satoshi"},"ink":"#E8E3D3","opaqueWindows":true,"semanticColors":{"diffAdded":"#9EBB84","diffRemoved":"#D9907E","skill":"#C3A7D8"},"surface":"#18382B"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#D4B95E","contrast":68,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#E8E3D3","opaqueWindows":true,"semanticColors":{"diffAdded":"#9EBB84","diffRemoved":"#D9907E","skill":"#C3A7D8"},"surface":"#18382B"},"variant":"dark"}
 ```
 
-## 2. 老式咖啡館木桌
+## 2. 咖啡胡桃木
 
 ```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#D6A756","contrast":70,"fonts":{"code":"Cascadia Mono","ui":"Satoshi"},"ink":"#F1E2CF","opaqueWindows":true,"semanticColors":{"diffAdded":"#9CAF78","diffRemoved":"#C9705C","skill":"#B88FAF"},"surface":"#3A241B"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#D6A756","contrast":70,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#F1E2CF","opaqueWindows":true,"semanticColors":{"diffAdded":"#9EBB84","diffRemoved":"#D9907E","skill":"#C3A7D8"},"surface":"#3A241B"},"variant":"dark"}
 ```
 
-## 3. 羊皮紙與墨水
+## 3. 製圖藍
 
 ```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#8C5A3C","contrast":72,"fonts":{"code":"Cascadia Mono","ui":"Satoshi"},"ink":"#302A25","opaqueWindows":true,"semanticColors":{"diffAdded":"#477A4A","diffRemoved":"#A3433E","skill":"#76518A"},"surface":"#E4D8BE"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#E0B85C","contrast":70,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#DCE8EC","opaqueWindows":true,"semanticColors":{"diffAdded":"#9EBB84","diffRemoved":"#D9907E","skill":"#C3A7D8"},"surface":"#163A52"},"variant":"dark"}
 ```
 
-## 4. 藍圖工程桌
+## 4. 午夜研讀
 
 ```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#E0B85C","contrast":70,"fonts":{"code":"Cascadia Mono","ui":"Satoshi"},"ink":"#DCE8EC","opaqueWindows":true,"semanticColors":{"diffAdded":"#88C6A2","diffRemoved":"#E39488","skill":"#C3A6D9"},"surface":"#163A52"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#BFA36A","contrast":62,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#D5D0C7","opaqueWindows":true,"semanticColors":{"diffAdded":"#9EBB84","diffRemoved":"#D9907E","skill":"#C3A7D8"},"surface":"#181817"},"variant":"dark"}
 ```
 
-## 5. 深夜書房
+## 5. 野外儀器
 
 ```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#BFA36A","contrast":62,"fonts":{"code":"Cascadia Mono","ui":"Satoshi"},"ink":"#D5D0C7","opaqueWindows":true,"semanticColors":{"diffAdded":"#899A7C","diffRemoved":"#B8776E","skill":"#9D91AA"},"surface":"#181817"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#9FCB72","contrast":75,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#C4D7BE","opaqueWindows":true,"semanticColors":{"diffAdded":"#9EBB84","diffRemoved":"#D9907E","skill":"#C3A7D8"},"surface":"#111A14"},"variant":"dark"}
 ```
 
-## 6. 墨水灰與再生紙
-
-```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#A9784D","contrast":69,"fonts":{"code":"Cascadia Mono","ui":"Satoshi"},"ink":"#333230","opaqueWindows":true,"semanticColors":{"diffAdded":"#4F7C55","diffRemoved":"#A84E47","skill":"#76588A"},"surface":"#D3CEC3"},"variant":"dark"}
-```
-
-## 7. 軍用儀器面板
-
-```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#9FCB72","contrast":75,"fonts":{"code":"Cascadia Mono","ui":"Satoshi"},"ink":"#C4D7BE","opaqueWindows":true,"semanticColors":{"diffAdded":"#86C68A","diffRemoved":"#D48178","skill":"#B79BCD"},"surface":"#111A14"},"variant":"dark"}
-```
-
-## 8. 港灣霧
-
-```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#3F7183","contrast":71,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#23343A","opaqueWindows":true,"semanticColors":{"diffAdded":"#397253","diffRemoved":"#A34C4C","skill":"#76558E"},"surface":"#D6E0E2"},"variant":"dark"}
-```
-
-## 9. 茄紫工作室
+## 6. 茄紫工作室
 
 ```text
 codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#C989A5","contrast":67,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#E8DEE9","opaqueWindows":true,"semanticColors":{"diffAdded":"#8CB790","diffRemoved":"#DC8A88","skill":"#C8A4DF"},"surface":"#281C2F"},"variant":"dark"}
 ```
 
-## 10. 琥珀終端
+## 7. 琥珀終端
 
 ```text
 codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#E6A84F","contrast":78,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#F1DFC1","opaqueWindows":true,"semanticColors":{"diffAdded":"#A6C77B","diffRemoved":"#E08A72","skill":"#C7A5D9"},"surface":"#17140F"},"variant":"dark"}
 ```
 
-## 11. 清水模工作室
-
-```text
-codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#5a3a23","contrast":70,"fonts":{"code":"Cascadia Mono","ui":"Microsoft JhengHei UI"},"ink":"#414141","opaqueWindows":true,"semanticColors":{"diffAdded":"#2e5039","diffRemoved":"#75312f","skill":"#4e3d63"},"surface":"#e4e4e4"},"variant":"dark"}
-```
-
-## 12. 靛藍工裝
+## 8. 靛藍工裝
 
 ```text
 codex-theme-v1:{"codeThemeId":"codex","theme":{"accent":"#AF9362","contrast":72,"fonts":{"code":"Cascadia Mono","ui":"Noto Sans TC"},"ink":"#DDE1DE","opaqueWindows":true,"semanticColors":{"diffAdded":"#86A98B","diffRemoved":"#D18478","skill":"#A696BB"},"surface":"#1D2933"},"variant":"dark"}
 ```
-
-[1]: https://developers.openai.com/codex/reference/settings "
-  Settings | ChatGPT Learn
-"
