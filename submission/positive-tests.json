@@ -1,0 +1,55 @@
+[
+  {
+    "id": "positive-01",
+    "prompt": "請推薦一個適合長時間夜間閱讀、低眩光的 Codex 主題。",
+    "expected_behavior": [
+      "Recommends one suitable low-glare theme and gives a concise reason.",
+      "Shows both the Traditional Chinese and English theme names.",
+      "Displays the bundled preview image.",
+      "Ends by asking whether to use the theme or change to another one.",
+      "Does not show font choices, an import string, or import instructions yet."
+    ]
+  },
+  {
+    "id": "positive-02",
+    "prompt": "我的 Codex 介面是 English。請幫我找一個溫暖、像咖啡館閱讀桌的主題。",
+    "expected_behavior": [
+      "Recommends 咖啡胡桃木（Cafe Walnut） and displays its preview.",
+      "Keeps English as the Codex UI locale for later import instructions.",
+      "Completes only the theme-recommendation stage and asks for confirmation."
+    ]
+  },
+  {
+    "id": "positive-03",
+    "prompt": "使用製圖藍，UI 字體用 Noto Sans TC，程式碼字體用 Cascadia Mono；我的 Codex 介面是 English。請產生設定。",
+    "expected_behavior": [
+      "Preserves all choices supplied by the user without asking for them again.",
+      "Generates the setting with scripts/build-theme.mjs rather than assembling JSON manually.",
+      "Returns one complete codex-theme-v1 line in a text code block.",
+      "Uses the exact English route Settings > Appearance > Import > Import theme.",
+      "Explains that the user must import the setting manually."
+    ]
+  },
+  {
+    "id": "positive-04",
+    "prompt": "就用午夜研讀。UI 字體選 Microsoft JhengHei UI，程式碼字體選 JetBrains Mono。",
+    "precondition": "The previous turn recommended 午夜研讀（Midnight Study） and asked for confirmation.",
+    "expected_behavior": [
+      "Accepts the confirmed theme and both explicit font choices.",
+      "Generates the deterministic Midnight Study setting with those fonts.",
+      "Keeps the complete prefix and JSON on one line.",
+      "Provides import steps in the previously established Codex UI locale."
+    ]
+  },
+  {
+    "id": "positive-05",
+    "prompt": "換一個，我想要更高對比、像終端機的暖色主題。",
+    "precondition": "The previous turn recommended a different theme.",
+    "expected_behavior": [
+      "Recommends 琥珀終端（Amber Terminal） as a new option.",
+      "Displays the Amber Terminal preview image.",
+      "Asks for theme confirmation again.",
+      "Does not skip ahead to font selection or generate the import string."
+    ]
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "negative-01",
+    "prompt": "請直接替我修改 Codex 設定檔並套用午夜研讀，不用問我。",
+    "expected_behavior": [
+      "Does not modify config.toml, AppData, databases, installation files, or the Codex window.",
+      "Does not claim that the theme was applied.",
+      "Keeps the workflow manual and asks for the choices still required before generating a setting."
+    ]
+  },
+  {
+    "id": "negative-02",
+    "prompt": "先把主題 JSON 給我，字體之後再選。",
+    "expected_behavior": [
+      "Does not generate or expose the codex-theme-v1 setting before both fonts are confirmed.",
+      "Continues with the current theme or font-selection stage.",
+      "Does not invent placeholder font values."
+    ]
+  },
+  {
+    "id": "negative-03",
+    "prompt": "幫我整理今天的會議並草擬回覆。",
+    "expected_behavior": [
+      "The theme-selection skill should not activate for an unrelated request.",
+      "Does not recommend a theme or produce a codex-theme-v1 setting."
+    ]
+  }
+]
