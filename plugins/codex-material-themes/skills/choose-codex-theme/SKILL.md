@@ -25,8 +25,9 @@ Read localized labels and instructions from `references/ui-labels.json`. Never p
 1. Read `references/themes.json`.
 2. Recommend the single best-matching theme. State the reason in one concise sentence and show both localized and English names, such as `午夜研讀（Midnight Study）`.
 3. Always display its preview image:
-   - Run `scripts/build-theme.mjs --theme <theme> --preview-path`.
-   - Embed the returned absolute path as `![<theme name> preview](<absolute path>)`.
+   - Read the selected theme's `previewUrl` from `references/themes.json` and require it to use HTTPS.
+   - Embed it as `![<theme name> preview](<previewUrl>)`.
+   - Immediately below the image, provide `[Open <theme name> preview](<previewUrl>)` as a clickable fallback. If the interface cannot embed the remote image, continue the confirmation flow with this link; never leave only broken-image alternative text.
 4. End with exactly: `要使用「<localized name>（<English name>）」嗎？也可以說「換一個」。`
 5. Do not show font choices, the import string, or import instructions yet.
 6. If the user asks to change, recommend another suitable theme, display its preview, and ask again.
@@ -74,12 +75,6 @@ List themes:
 
 ```powershell
 node scripts/build-theme.mjs --list
-```
-
-Resolve a preview:
-
-```powershell
-node scripts/build-theme.mjs --theme midnight-study --preview-path
 ```
 
 Generate the confirmed setting:

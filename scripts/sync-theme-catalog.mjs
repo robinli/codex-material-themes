@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const sourceCatalogPath = join(projectRoot, "catalog", "references", "themes.json");
 const sourceAssetsPath = join(projectRoot, "catalog", "assets");
+const previewOrigin = "https://codex-material-themes.bud4net.chatgpt.site";
 const checkOnly = process.argv.includes("--check");
 const unsupportedArgs = process.argv.slice(2).filter((arg) => arg !== "--check");
 
@@ -37,6 +38,7 @@ function validateCatalog(value) {
   const ids = new Set();
   const slugs = new Set();
   const previews = new Set();
+  const previewUrls = new Set();
 
   for (const [index, theme] of value.themes.entries()) {
     assert(Number.isInteger(theme.id), "Each theme requires an integer id.");
@@ -54,6 +56,21 @@ function validateCatalog(value) {
     assert(theme.preview === expectedPreview, `${theme.slug}.preview must be ${expectedPreview}.`);
     assert(!previews.has(theme.preview), `Duplicate preview path: ${theme.preview}.`);
     previews.add(theme.preview);
+    assert(typeof theme.previewUrl === "string" && theme.previewUrl, `${theme.slug}.previewUrl is required.`);
+    let previewUrl;
+    try {
+      previewUrl = new URL(theme.previewUrl);
+    } catch {
+      throw new Error(`${theme.slug}.previewUrl must be a valid URL.`);
+    }
+    const previewName = basename(theme.preview);
+    assert(previewUrl.protocol === "https:", `${theme.slug}.previewUrl must use HTTPS.`);
+    assert(previewUrl.origin === previewOrigin, `${theme.slug}.previewUrl must use ${previewOrigin}.`);
+    assert(!previewUrl.username && !previewUrl.password, `${theme.slug}.previewUrl must not include credentials.`);
+    assert(!previewUrl.search && !previewUrl.hash, `${theme.slug}.previewUrl must not include a query or fragment.`);
+    assert(previewUrl.pathname === `/themes/${previewName}`, `${theme.slug}.previewUrl must end with /themes/${previewName}.`);
+    assert(!previewUrls.has(previewUrl.href), `Duplicate preview URL: ${theme.previewUrl}.`);
+    previewUrls.add(previewUrl.href);
     for (const role of ["ui", "code"]) {
       if (theme.fonts?.[role]) {
         assert(value.fontOptions[role].includes(theme.fonts[role]), `${theme.slug}.fonts.${role} must be listed in fontOptions.${role}.`);
