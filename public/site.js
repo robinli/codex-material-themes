@@ -39,18 +39,23 @@ const copy = {
     opaqueNote: "每款預設都使用 <code>opaqueWindows:true</code>，讓介面色彩更貼近其參考材質。",
     skillTitle: "讓 ChatGPT 與 Codex 依照你的需求推薦主題",
     skillLead: "安裝正式 Plugin 或獨立 Skill 後，只要描述偏好的明暗、色調、對比度或使用情境，就能依序選擇主題與字體，並產生可匯入的設定。",
-    pluginTitle: "安裝 Plugin（推薦）",
+    pluginTitle: "安裝 Plugin",
     pluginLead: "從 Plugin Directory 安裝正式版本，即可在 ChatGPT 與 Codex 使用同一套主題推薦流程。",
     pluginAction: "前往 Plugin Directory",
     pluginNote: "目前正式版本為 1.0.2；安裝後可直接從對話中呼叫 Codex Material Themes。",
-    installTitle: "安裝獨立 Codex Skill",
+    installTitle: "安裝 Skill",
     installLead: "若要在專案中進行本機開發或測試，可在 Codex 對話中貼上：",
     installCommand: "請安裝 Skill：\nhttps://github.com/robinli/codex-material-themes/tree/main/.agents/skills/choose-codex-theme",
     installNote: "安裝完成後，下一輪對話即可使用；若尚未出現在 Codex 中，請重新啟動 Codex。",
-    useTitle: "使用 Codex Skill",
-    useLead: "依照安裝方式呼叫主題推薦，例如：",
-    useCommand: "ChatGPT：@Codex Material Themes\nCodex Plugin：請使用 $codex-material-themes:choose-codex-theme，幫我推薦主題。\n獨立 Skill：請使用 $choose-codex-theme，幫我推薦主題。",
-    promptLabel: "CODEX 對話提示詞",
+    useTitle: "使用 Skill",
+    useLead: "安裝獨立 Skill 後，在 Codex 對話中呼叫：",
+    useCommand: "請使用 $choose-codex-theme，幫我推薦適合夜間長時間閱讀、低眩光的主題。",
+    pluginUseTitle: "使用 Plugin",
+    pluginUseLead: "安裝正式 Plugin 後，依照對談環境呼叫：",
+    chatgptPromptLabel: "ChatGPT 對話提示詞",
+    pluginChatgptCommand: "@Codex Material Themes 幫我推薦主題。",
+    pluginCodexCommand: "請使用 $codex-material-themes:choose-codex-theme，幫我推薦主題。",
+    promptLabel: "Codex 對話提示詞",
     workflowTitle: "Skill 會依序引導完成",
     skillSteps: [
       { title: "選擇主題", body: "Codex 推薦適合情境的主題並顯示預覽圖；可確認使用或要求其他建議。" },
@@ -72,6 +77,8 @@ const copy = {
     showFontOptions: "顯示字體選項",
     copy: "複製主題設定",
     copied: "已複製設定",
+    copyPrompt: "複製",
+    promptCopied: "已複製",
     footer: "八種深色數位材質，為長時間閱讀與專注工作調校。",
     privacy: "隱私權",
     terms: "使用條款",
@@ -96,18 +103,23 @@ const copy = {
     opaqueNote: "Every preset uses <code>opaqueWindows:true</code>, so interface colours stay closer to their material reference.",
     skillTitle: "Let ChatGPT and Codex recommend a theme for your needs",
     skillLead: "Install the official Plugin or standalone Skill, then describe your preferred brightness, colour temperature, contrast, or working context to choose a theme and fonts and generate an import-ready setting.",
-    pluginTitle: "Install the Plugin (recommended)",
+    pluginTitle: "Install Plugin",
     pluginLead: "Install the official release from the Plugin Directory to use the same guided theme workflow in ChatGPT and Codex.",
     pluginAction: "Open Plugin Directory",
     pluginNote: "The current public release is 1.0.2. After installation, invoke Codex Material Themes directly from a conversation.",
-    installTitle: "Install the standalone Codex Skill",
+    installTitle: "Install Skill",
     installLead: "For local development or project testing, paste this into a Codex conversation:",
     installCommand: "Please install this Skill:\nhttps://github.com/robinli/codex-material-themes/tree/main/.agents/skills/choose-codex-theme",
     installNote: "The Skill is ready to use on the next turn. If it does not appear in Codex, restart the app.",
-    useTitle: "Use the Codex Skill",
-    useLead: "Invoke the theme workflow according to how you installed it:",
-    useCommand: "ChatGPT: @Codex Material Themes\nCodex Plugin: Use $codex-material-themes:choose-codex-theme to recommend a theme.\nStandalone Skill: Use $choose-codex-theme to recommend a theme.",
-    promptLabel: "CODEX PROMPT",
+    useTitle: "Use Skill",
+    useLead: "After installing the standalone Skill, invoke it in Codex:",
+    useCommand: "Use $choose-codex-theme to find a low-glare theme for long nighttime reading.",
+    pluginUseTitle: "Use Plugin",
+    pluginUseLead: "After installing the official Plugin, invoke it for the current conversation surface:",
+    chatgptPromptLabel: "ChatGPT PROMPT",
+    pluginChatgptCommand: "@Codex Material Themes Recommend a theme for me.",
+    pluginCodexCommand: "Use $codex-material-themes:choose-codex-theme to recommend a theme.",
+    promptLabel: "Codex PROMPT",
     workflowTitle: "The Skill guides you through four steps",
     skillSteps: [
       { title: "Choose a theme", body: "Codex recommends a theme for your context and shows a preview. Accept it or ask for another option." },
@@ -129,6 +141,8 @@ const copy = {
     showFontOptions: "Show font options",
     copy: "Copy theme settings",
     copied: "Settings copied",
+    copyPrompt: "Copy",
+    promptCopied: "Copied",
     footer: "Eight dark digital materials tuned for long reading and focused work.",
     privacy: "Privacy",
     terms: "Terms",
@@ -221,6 +235,10 @@ function setFont(type, value) {
   updateThemeCode();
 }
 
+function promptCommand(label, value, t) {
+  return `<div class="skill-command"><div class="skill-command-head"><span>${label}</span><button type="button" class="prompt-copy" data-copy-prompt aria-label="${t.copyPrompt}: ${label}">${t.copyPrompt}</button></div><code>${esc(value)}</code></div>`;
+}
+
 function render() {
   const t = copy[locale];
   const selected = themes[selectedId - 1];
@@ -230,9 +248,14 @@ function render() {
     <header class="site-header"><a class="brand" href="#top"><span class="brand-mark">C</span><span>CODEX / MATERIAL THEMES</span></a><div class="header-actions"><nav><a href="#guide">${t.guide}</a><a href="#skill">${t.skillNav}</a><a href="#themes">${t.themes}</a></nav><div class="language-switch"><button data-locale="zh" class="${locale === "zh" ? "active" : ""}">中文</button><span>/</span><button data-locale="en" class="${locale === "en" ? "active" : ""}">EN</button></div></div></header>
     <section class="hero" id="top"><div class="hero-copy"><p class="eyebrow"><span></span>${t.eyebrow}</p><h1>${t.title.replace("\n", "<br>")}</h1><p class="hero-lead">${t.lead}</p><div class="hero-actions"><a class="button primary" href="#themes">${t.choose} <b>→</b></a><a class="text-link" href="#guide">${t.how} →</a></div><div class="hero-meta"><div><strong>${themeNumber(themes.length)}</strong><span>${t.meta[0]}</span></div><div><strong>01</strong><span>${t.meta[1]}</span></div><div><strong>∞</strong><span>${t.meta[2]}</span></div></div></div><div class="hero-visual"><div class="material-label">${themeNumber(heroTheme.id)} / ${heroTheme.en.toUpperCase()}</div><div class="image-frame"><img src="${heroTheme.image}" alt="${esc(heroTheme.en)} preview"></div><div class="hero-swatches"><i style="background:${heroTheme.surface}"></i><i style="background:${heroTheme.ink}"></i><i style="background:${heroTheme.accent}"></i></div></div></section>
     <section class="guide-section" id="guide"><div class="section-heading"><p class="section-index">01 / HOW TO APPLY</p><div><h2>${t.guideTitle}</h2><p>${t.guideLead}</p></div></div><ol class="steps">${t.steps.map((step, index) => `<li><span>0${index + 1}</span><strong>${step}</strong>${index < 4 ? "<b>→</b>" : ""}</li>`).join("")}</ol><p class="guide-note"><b>${t.pathLabel}</b>${t.path}<br><span>${t.opaqueNote}</span></p></section>
-    <section class="skill-section" id="skill"><div class="section-heading"><p class="section-index">02 / PLUGIN + SKILL</p><div><h2>${t.skillTitle}</h2><p>${t.skillLead}</p></div></div><div class="skill-grid"><article class="skill-card plugin-card"><span class="skill-card-index">01</span><h3>${t.pluginTitle}</h3><p>${t.pluginLead}</p><a class="plugin-install-link" href="https://chatgpt.com/plugins/plugins_6a5f45b6e49c8191aee78425f9a5a408" target="_blank" rel="noopener noreferrer">${t.pluginAction}<b>↗</b></a><p class="skill-card-note">${t.pluginNote}</p></article><article class="skill-card"><span class="skill-card-index">02</span><h3>${t.installTitle}</h3><p>${t.installLead}</p><div class="skill-command"><span>${t.promptLabel}</span><code>${esc(t.installCommand)}</code></div><p class="skill-card-note">${t.installNote}</p></article><article class="skill-card"><span class="skill-card-index">03</span><h3>${t.useTitle}</h3><p>${t.useLead}</p><div class="skill-command"><span>${t.promptLabel}</span><code>${esc(t.useCommand)}</code></div></article></div><div class="skill-flow"><div class="skill-flow-heading"><span>04</span><h3>${t.workflowTitle}</h3></div><ol>${t.skillSteps.map((step, index) => `<li><span>0${index + 1}</span><strong>${step.title}</strong><p>${step.body}</p></li>`).join("")}</ol><p class="skill-note">${t.skillNote}</p></div></section>
+    <section class="skill-section" id="skill"><div class="section-heading"><p class="section-index">02 / PLUGIN + SKILL</p><div><h2>${t.skillTitle}</h2><p>${t.skillLead}</p></div></div><div class="skill-grid"><article class="skill-card"><span class="skill-card-index">01</span><h3>${t.installTitle}</h3><p>${t.installLead}</p>${promptCommand(t.promptLabel, t.installCommand, t)}<p class="skill-card-note">${t.installNote}</p></article><article class="skill-card plugin-card"><span class="skill-card-index">02</span><h3>${t.pluginTitle}</h3><p>${t.pluginLead}</p><a class="plugin-install-link" href="https://chatgpt.com/plugins/plugins_6a5f45b6e49c8191aee78425f9a5a408" target="_blank" rel="noopener noreferrer">${t.pluginAction}<b>↗</b></a><p class="skill-card-note">${t.pluginNote}</p></article><article class="skill-card"><span class="skill-card-index">03</span><h3>${t.useTitle}</h3><p>${t.useLead}</p>${promptCommand(t.promptLabel, t.useCommand, t)}</article><article class="skill-card plugin-card"><span class="skill-card-index">04</span><h3>${t.pluginUseTitle}</h3><p>${t.pluginUseLead}</p><div class="plugin-use-stack">${promptCommand(t.promptLabel, t.pluginCodexCommand, t)}${promptCommand(t.chatgptPromptLabel, t.pluginChatgptCommand, t)}</div></article></div><div class="skill-flow"><div class="skill-flow-heading"><span>05</span><h3>${t.workflowTitle}</h3></div><ol>${t.skillSteps.map((step, index) => `<li><span>0${index + 1}</span><strong>${step.title}</strong><p>${step.body}</p></li>`).join("")}</ol><p class="skill-note">${t.skillNote}</p></div></section>
     <section class="themes-section" id="themes"><div class="section-heading inverse"><p class="section-index">03 / THE COLLECTION</p><div><h2>${t.collection}</h2><p>${t.collectionLead}</p></div></div><div class="theme-workbench"><div class="theme-list">${themes.map((theme) => `<div class="theme-row ${theme.id === selectedId ? "active" : ""}"><button class="theme-select" data-select="${theme.id}"><span>${themeNumber(theme.id)}</span><span><strong>${locale === "zh" ? theme.zh : theme.en}</strong><small>${locale === "zh" ? theme.en : theme.zh}</small></span><em><i style="background:${theme.surface}"></i><i style="background:${theme.ink}"></i><i style="background:${theme.accent}"></i></em></button><button class="quick-copy" data-copy="${theme.id}" aria-label="${t.copy}">⧉</button></div>`).join("")}</div><article class="theme-preview" style="--surface:${selected.surface};--accent:${selected.accent}"><div class="preview-topline"><span>${t.selected.toUpperCase()} / ${themeNumber(selected.id)}</span><span>CONTRAST ${selected.contrast}</span></div><img class="preview-image" src="${selected.image}" alt="${esc(selected.en)} preview"><div class="preview-info"><div><p class="preview-en">${locale === "zh" ? selected.en : selected.zh}</p><h3>${locale === "zh" ? selected.zh : selected.en}</h3><p>${locale === "zh" ? selected.noteZh : selected.noteEn}</p></div><div class="palette"><div><i style="background:${selected.surface}"></i><small>${t.surface}<br>${selected.surface}</small></div><div><i style="background:${selected.ink}"></i><small>${t.ink}<br>${selected.ink}</small></div><div><i style="background:${selected.accent}"></i><small>${t.accent}<br>${selected.accent}</small></div></div></div><div class="font-panel"><div class="font-heading"><strong>${t.fonts}</strong><span>${t.fontHint}</span></div><div class="font-fields">${["ui", "code"].map((type) => `<div class="font-field"><span id="${type}-font-label">${type === "ui" ? t.uiFont : t.codeFont}</span><div class="font-combobox" data-font-combobox="${type}"><input type="text" data-font="${type}" value="${esc(selectedFonts[type])}" autocomplete="off" role="combobox" aria-autocomplete="none" aria-labelledby="${type}-font-label" aria-controls="${type}-font-menu" aria-expanded="false"><button type="button" class="font-toggle" data-font-toggle="${type}" aria-label="${t.showFontOptions}: ${type === "ui" ? t.uiFont : t.codeFont}" aria-controls="${type}-font-menu" aria-expanded="false"></button><div class="font-menu" id="${type}-font-menu" role="listbox" aria-labelledby="${type}-font-label" hidden>${fontOptions[type].map((font) => `<button type="button" role="option" data-font-option="${esc(font)}" data-font-type="${type}" aria-selected="${font === selectedFonts[type]}">${esc(font)}</button>`).join("")}</div></div></div>`).join("")}</div></div><div class="copy-panel"><code>${esc(themeValue(selected))}</code><button class="copy-button" data-copy="${selected.id}">${t.copy}</button></div></article></div></section>
     <footer><div><span class="brand-mark">C</span><strong>Codex Material Themes / <a class="footer-author" href="https://github.com/robinli" target="_blank" rel="noopener noreferrer">Robin Li / 瑞彬 李</a></strong></div><p>${t.footer}</p><nav class="footer-links" aria-label="Legal and support"><a href="./privacy/">${t.privacy}</a><a href="./terms/">${t.terms}</a><a href="./support/">${t.support}</a></nav><a href="#top">${t.top}</a></footer>`;
+  document.querySelectorAll(".quick-copy").forEach((button) => {
+    button.innerHTML = `<span class="quick-copy-icon" aria-hidden="true">⧉</span><span class="quick-copy-tooltip" role="status">${t.copy}</span>`;
+    button.setAttribute("aria-label", `${t.copy}: ${locale === "zh" ? themes[Number(button.dataset.copy) - 1].zh : themes[Number(button.dataset.copy) - 1].en}`);
+    button.title = t.copy;
+  });
 }
 
 async function copyTheme(id) {
@@ -240,11 +263,39 @@ async function copyTheme(id) {
   try { await navigator.clipboard.writeText(value); } catch { const field = document.createElement("textarea"); field.value = value; document.body.append(field); field.select(); document.execCommand("copy"); field.remove(); }
   const button = document.querySelector(`.copy-button[data-copy="${id}"]`);
   if (button) { const original = button.textContent; button.textContent = copy[locale].copied; button.classList.add("copied"); setTimeout(() => { button.textContent = original; button.classList.remove("copied"); }, 1800); }
+  const quickButton = document.querySelector(`.quick-copy[data-copy="${id}"]`);
+  if (quickButton) {
+    const icon = quickButton.querySelector(".quick-copy-icon");
+    const tooltip = quickButton.querySelector(".quick-copy-tooltip");
+    icon.textContent = "✓";
+    tooltip.textContent = copy[locale].copied;
+    quickButton.classList.add("copied");
+    quickButton.setAttribute("aria-label", copy[locale].copied);
+    quickButton.title = copy[locale].copied;
+    setTimeout(() => {
+      icon.textContent = "⧉";
+      tooltip.textContent = copy[locale].copy;
+      quickButton.classList.remove("copied");
+      quickButton.setAttribute("aria-label", copy[locale].copy);
+      quickButton.title = copy[locale].copy;
+    }, 1800);
+  }
+}
+
+async function copyPrompt(button) {
+  const value = button.closest(".skill-command")?.querySelector("code")?.textContent;
+  if (!value) return;
+  try { await navigator.clipboard.writeText(value); } catch { const field = document.createElement("textarea"); field.value = value; document.body.append(field); field.select(); document.execCommand("copy"); field.remove(); }
+  const original = button.textContent;
+  button.textContent = copy[locale].promptCopied;
+  button.classList.add("copied");
+  setTimeout(() => { button.textContent = original; button.classList.remove("copied"); }, 1800);
 }
 
 app.addEventListener("click", (event) => {
   const button = event.target.closest("button");
   if (!button) return;
+  if (button.hasAttribute("data-copy-prompt")) { copyPrompt(button); return; }
   if (button.dataset.fontToggle) {
     const type = button.dataset.fontToggle;
     const shouldOpen = button.getAttribute("aria-expanded") !== "true";
