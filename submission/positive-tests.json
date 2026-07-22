@@ -5,7 +5,7 @@
     "expected_behavior": [
       "Recommends one suitable low-glare theme and gives a concise reason.",
       "Shows both the Traditional Chinese and English theme names.",
-      "Displays the preview from the theme's public HTTPS previewUrl and provides the same URL as a clickable fallback.",
+      "Displays the bundled local preview when local command execution and the skill filesystem are available; otherwise displays the public HTTPS previewUrl. Always provides the HTTPS previewUrl as a clickable fallback.",
       "Ends by asking whether to use the theme or change to another one.",
       "Does not show font choices, an import string, or import instructions yet."
     ]

@@ -26,8 +26,10 @@ Read localized labels and instructions from `references/ui-labels.json`. Never p
 2. Recommend the single best-matching theme. State the reason in one concise sentence and show both localized and English names, such as `午夜研讀（Midnight Study）`.
 3. Always display its preview image:
    - Read the selected theme's `previewUrl` from `references/themes.json` and require it to use HTTPS.
-   - Embed it as `![<theme name> preview](<previewUrl>)`.
-   - Immediately below the image, provide `[Open <theme name> preview](<previewUrl>)` as a clickable fallback. If the interface cannot embed the remote image, continue the confirmation flow with this link; never leave only broken-image alternative text.
+   - Prefer the bundled local preview when local command execution and the skill filesystem are available: run `node scripts/build-theme.mjs --theme <theme> --preview-path` from this skill directory and accept the result only when it is an absolute path to an existing `.png` file.
+   - When the local preview resolves, embed it as `![<theme name> preview](<absolute local path>)`.
+   - When local command execution or the bundled file is unavailable, embed the hosted preview as `![<theme name> preview](<previewUrl>)`.
+   - Immediately below either image, always provide `[Open <theme name> preview](<previewUrl>)` as a clickable fallback. If the interface cannot embed the chosen image, continue the confirmation flow with this link; never leave only broken-image alternative text.
 4. End with exactly: `要使用「<localized name>（<English name>）」嗎？也可以說「換一個」。`
 5. Do not show font choices, the import string, or import instructions yet.
 6. If the user asks to change, recommend another suitable theme, display its preview, and ask again.
