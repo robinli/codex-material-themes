@@ -9,6 +9,13 @@
 - Publisher: `Robin Li / 瑞彬 李`
 - Developer identity selected in the upload form: `Individual — 瑞彬 李`
 
+## Plugin Portal upload fields
+
+Use these exact values whenever uploading a release ZIP or creating a new draft:
+
+- Subtitle: `Choose and export Codex themes`
+- Customer support URL: `https://codex-material-themes.bud4net.chatgpt.site/support/`
+
 ## Publisher identity note
 
 My OpenAI Platform profile name is **Robin Li**, while the verified Developer Identity dropdown displays the same individual's legal Chinese name, **瑞彬 李**. The Plugin manifest and all public publisher pages therefore identify the publisher as **Robin Li / 瑞彬 李**.
