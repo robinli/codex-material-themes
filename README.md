@@ -4,7 +4,7 @@
 
 Codex Material Themes 提供八款適合不同工作情境的 Codex 深色主題。你可以透過網頁預覽主題並複製設定，也可以安裝正式 Plugin 或獨立 Codex Skill，在對話中描述偏好的色調、對比度或使用情境，由 Codex 推薦主題、協助選擇字體，並產生可匯入的主題設定。
 
-範例網站：[https://codex-material-themes.bud4net.chatgpt.site/](https://codex-material-themes.bud4net.chatgpt.site/)
+範例網站：[https://codex-themes.robinks.net/](https://codex-themes.robinks.net/)
 
 ## 安裝 Plugin（推薦）
 

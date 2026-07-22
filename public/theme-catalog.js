@@ -44,7 +44,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "long-reading"
       ],
       "preview": "../assets/Theme01.png",
-      "previewUrl": "https://codex-material-themes.bud4net.chatgpt.site/themes/Theme01.png",
+      "previewUrl": "https://codex-themes.robinks.net/themes/Theme01.png",
       "surface": "#18382B",
       "ink": "#E8E3D3",
       "accent": "#D4B95E",
@@ -74,7 +74,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "reading"
       ],
       "preview": "../assets/Theme02.png",
-      "previewUrl": "https://codex-material-themes.bud4net.chatgpt.site/themes/Theme02.png",
+      "previewUrl": "https://codex-themes.robinks.net/themes/Theme02.png",
       "surface": "#3A241B",
       "ink": "#F1E2CF",
       "accent": "#D6A756",
@@ -104,7 +104,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "clear"
       ],
       "preview": "../assets/Theme03.png",
-      "previewUrl": "https://codex-material-themes.bud4net.chatgpt.site/themes/Theme03.png",
+      "previewUrl": "https://codex-themes.robinks.net/themes/Theme03.png",
       "surface": "#163A52",
       "ink": "#DCE8EC",
       "accent": "#E0B85C",
@@ -134,7 +134,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "focused"
       ],
       "preview": "../assets/Theme04.png",
-      "previewUrl": "https://codex-material-themes.bud4net.chatgpt.site/themes/Theme04.png",
+      "previewUrl": "https://codex-themes.robinks.net/themes/Theme04.png",
       "surface": "#181817",
       "ink": "#D5D0C7",
       "accent": "#BFA36A",
@@ -164,7 +164,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "instrument"
       ],
       "preview": "../assets/Theme05.png",
-      "previewUrl": "https://codex-material-themes.bud4net.chatgpt.site/themes/Theme05.png",
+      "previewUrl": "https://codex-themes.robinks.net/themes/Theme05.png",
       "surface": "#111A14",
       "ink": "#C4D7BE",
       "accent": "#9FCB72",
@@ -194,7 +194,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "night"
       ],
       "preview": "../assets/Theme06.png",
-      "previewUrl": "https://codex-material-themes.bud4net.chatgpt.site/themes/Theme06.png",
+      "previewUrl": "https://codex-themes.robinks.net/themes/Theme06.png",
       "surface": "#281C2F",
       "ink": "#E8DEE9",
       "accent": "#C989A5",
@@ -224,7 +224,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "technical"
       ],
       "preview": "../assets/Theme07.png",
-      "previewUrl": "https://codex-material-themes.bud4net.chatgpt.site/themes/Theme07.png",
+      "previewUrl": "https://codex-themes.robinks.net/themes/Theme07.png",
       "surface": "#17140F",
       "ink": "#F1DFC1",
       "accent": "#E6A84F",
@@ -254,7 +254,7 @@ globalThis.CODEX_MATERIAL_THEME_CATALOG = {
         "focused"
       ],
       "preview": "../assets/Theme08.png",
-      "previewUrl": "https://codex-material-themes.bud4net.chatgpt.site/themes/Theme08.png",
+      "previewUrl": "https://codex-themes.robinks.net/themes/Theme08.png",
       "surface": "#1D2933",
       "ink": "#DDE1DE",
       "accent": "#AF9362",

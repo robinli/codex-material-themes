@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const sourceCatalogPath = join(projectRoot, "catalog", "references", "themes.json");
 const sourceAssetsPath = join(projectRoot, "catalog", "assets");
-const previewOrigin = "https://codex-material-themes.bud4net.chatgpt.site";
+const previewOrigin = "https://codex-themes.robinks.net";
 const checkOnly = process.argv.includes("--check");
 const unsupportedArgs = process.argv.slice(2).filter((arg) => arg !== "--check");
 

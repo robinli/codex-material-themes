@@ -14,7 +14,7 @@
 Use these exact values whenever uploading a release ZIP or creating a new draft:
 
 - Subtitle: `Choose and export Codex themes`
-- Customer support URL: `https://codex-material-themes.bud4net.chatgpt.site/support/`
+- Customer support URL: `https://codex-themes.robinks.net/support/`
 
 ## Publisher identity note
 
@@ -32,10 +32,10 @@ OpenAI Support advised me to submit the Plugin for review under case **11788023*
 
 ## Public URLs
 
-- Website: https://codex-material-themes.bud4net.chatgpt.site/
-- Privacy Policy: https://codex-material-themes.bud4net.chatgpt.site/privacy/
-- Terms of Service: https://codex-material-themes.bud4net.chatgpt.site/terms/
-- Support: https://codex-material-themes.bud4net.chatgpt.site/support/
+- Website: https://codex-themes.robinks.net/
+- Privacy Policy: https://codex-themes.robinks.net/privacy/
+- Terms of Service: https://codex-themes.robinks.net/terms/
+- Support: https://codex-themes.robinks.net/support/
 - Repository: https://github.com/robinli/codex-material-themes
 
 ## Capability disclosure
